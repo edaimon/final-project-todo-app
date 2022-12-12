@@ -1,14 +1,18 @@
 <template>
   <header>
-    <RouterLink to="/">Go to Home</RouterLink>
-    <RouterLink to="/projects">Go to Home</RouterLink>
+    <!-- <RouterLink to="/">Go to Home</RouterLink>
+    <RouterLink to="/projects">Go to Home</RouterLink> -->
+    <RouterLink to="/">Go to home</RouterLink> -->
   </header>
 
   <RouterView />
 </template>
 
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
+<script >
+// import { RouterLink, RouterView } from 'vue-router'
+export default {
+
+}
 </script>
 
 

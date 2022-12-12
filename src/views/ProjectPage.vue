@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div>
         Soy la project page
     </div>
@@ -6,4 +6,4 @@
 
 <script>
 export default 
-</script>
+</script> -->
