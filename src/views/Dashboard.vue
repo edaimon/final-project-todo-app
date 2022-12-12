@@ -1,31 +1,33 @@
 <template>
     <div>
         Dashboard
-        {{taskStore}}
+        {{fetchData(tasks)}}
     </div>
 </template>
 
 <script>
 
 import { mapStores } from 'pinia';
-import userStore from '../stores/user';
 import taskStore from "../stores/tasks"
 
 export default {
     data(){
         return{
-
+/*             taskStore: TASKSTORE, */
+            tasks: null,
         };
     },
     computed: {
-        ...mapStores(userStore),
         ...mapStores(taskStore)
     },
 
     methods: {
-        login() {
-            this.userStore.signUp()
-        }
+        fetchData (){
+            this.taskStore.fetchTasks()
+            console.log(tasks);
+        },
     }
+
+    
 }
 </script>
