@@ -2,7 +2,8 @@
   <header>
     <!-- <RouterLink to="/">Go to Home</RouterLink>
     <RouterLink to="/projects">Go to Home</RouterLink> -->
-    <RouterLink to="/">Go to home</RouterLink> -->
+    <RouterLink to="/">Go to home(logo)</RouterLink>
+    <RouterLink to="/user">User</RouterLink> 
   </header>
 
   <RouterView />

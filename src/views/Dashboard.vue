@@ -1,6 +1,9 @@
 <template>
     <div>
         Dashboard
+        <form action="">
+            
+        </form>
         <button @click="login">Login!</button>
     </div>
 </template>
