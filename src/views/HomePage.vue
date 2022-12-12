@@ -1,9 +1,11 @@
-<template>
-    <div>
-        Soy la home page
+<!-- <template>
+    <div>o
+        Soy la home
     </div>
 </template>
 
 <script>
-export default 
-</script>
+export default {
+
+}
+</script> -->
