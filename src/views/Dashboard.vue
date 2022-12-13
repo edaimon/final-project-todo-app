@@ -31,7 +31,5 @@ export default {
             this.tasks = fetchedData;
         },
     }
-
-    
 }
 </script>
