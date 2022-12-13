@@ -1,31 +1,37 @@
 <template>
     <div>
         Dashboard
-
+    </div>
+    <div> 
+        <div v-for="item in tasks" :key="item.id">
+            <div>{{item.title}}</div>
+        </div>
     </div>
 </template>
 
 <script>
 
 import { mapStores } from 'pinia';
-import taskStore from '../stores/tasks';
+import tasksStore from "../stores/tasks";
 
 export default {
     data(){
         return{
-/*             taskStore: TASKSTORE, */
             tasks: null,
         };
     },
-
     computed: {
-        ...mapStores(taskStore)
+        ...mapStores(tasksStore)
     },
 
     methods: {
-        fetchData (){
-            this.taskStore.fetchTasks()
+        async fetchData(){
+            const fetchedData = await this.tasksStore.fetchTasks()
+            console.log(fetchedData)
+            this.tasks = fetchedData;
         },
-    },
+    }
+
+    
 }
 </script>

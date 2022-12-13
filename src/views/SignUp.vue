@@ -39,7 +39,6 @@ export default {
             if (signInConfirm === 0){
                 this.$router.push("Dashboard");
             } 
-           
         },
         signOut(){
             this.userStore.signOut()
