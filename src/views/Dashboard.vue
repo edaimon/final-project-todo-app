@@ -1,14 +1,14 @@
 <template>
     <div>
         Dashboard
-        {{fetchData(tasks)}}
+
     </div>
 </template>
 
 <script>
 
 import { mapStores } from 'pinia';
-import taskStore from "../stores/tasks"
+import taskStore from '../stores/tasks';
 
 export default {
     data(){
@@ -17,6 +17,7 @@ export default {
             tasks: null,
         };
     },
+
     computed: {
         ...mapStores(taskStore)
     },
@@ -24,10 +25,7 @@ export default {
     methods: {
         fetchData (){
             this.taskStore.fetchTasks()
-            console.log(tasks);
         },
-    }
-
-    
+    },
 }
 </script>
