@@ -23,6 +23,7 @@ export default defineStore("tasks", {
         .order("id", { ascending: false });
 
       this.tasks = tasks;
+      return tasks;
     },
   },
 });
