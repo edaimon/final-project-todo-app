@@ -27,5 +27,6 @@ export default {
             this.taskStore.fetchTasks()
         },
     },
+
 }
 </script>
