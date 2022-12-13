@@ -21,12 +21,12 @@ export default {
         ...mapStores(taskStore)
     },
 
-    methods: {
-        fetchData (){
-            this.taskStore.fetchTasks()
-            console.log(tasks);
-        },
-    }
+    // methods: {
+    //     fetchData (){
+    //         this.taskStore.fetchTasks()
+    //         console.log(tasks);
+    //     },
+    // }
 
     
 }
