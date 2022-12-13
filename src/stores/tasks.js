@@ -11,7 +11,7 @@ import { supabase } from "../supabase";
 export default defineStore("tasks", {
   state() {
     return {
-      tasks: null,
+      tasks: [],
     };
   },
 
@@ -23,7 +23,7 @@ export default defineStore("tasks", {
         .order("id", { ascending: false });
 
       this.tasks = tasks;
-      return tasks;
+      console.log(this.tasks)
     },
   },
 });
