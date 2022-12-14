@@ -50,12 +50,20 @@
 </template>
 
 <script>
+import { mapStores } from "pinia";
+import tasksStore from "../stores/tasks";
+import userStore from "../stores/user";
 export default{
     data(){
         return{
             value: false,
         }
     },
+    computed:{
+        ...mapStores(tasksStore),
+        ...mapStores(userStore),
+    },
+
     props: [
     "item",
     ],
