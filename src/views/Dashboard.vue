@@ -9,8 +9,9 @@
     </div>
     
     <div>
-    <input type="text" name="task" id="task" placeholder="Introduce your new task">
-    <img src="../img/icono_suma.png" @click="" alt="icono suma" width="15" class=" bg-slate-500 rounded-full">
+    <input type="text" v-model="title" name="task" id="task" placeholder="Introduce your new title">
+    <input type="text" v-model="description" name="task" id="task" placeholder="Introduce your new description">
+    <img src="../img/icono_suma.png" @click="insert()" alt="icono suma" width="15" class=" bg-slate-500 rounded-full">
 
     </div>
 </template>
@@ -19,14 +20,24 @@
 
 import { mapStores } from 'pinia';
 import tasksStore from "../stores/tasks";
+import userStore from "../stores/user";
 
 export default {
+    data(){
+        return{
+            title: null,
+            description: null,
+        };
+    },
     computed: {
         ...mapStores(tasksStore),
+        ...mapStores(userStore)
     },
-    method:{
-        insert(){
-            this.tasksStore.insertTasks()
+    methods:{
+        async insert(){
+           await this.tasksStore.insertTasks(this.userStore.user.id, this.title, this.description)
+           await this.tasksStore.fetchTasks()
+
         }
 
     },
