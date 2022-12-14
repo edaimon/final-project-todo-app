@@ -6,7 +6,7 @@
             <input type="text" v-model="email" placeholder="Enter your mail">
             <input type="password" v-model="password" name="password" placeholder="Enter your password">
          </div>
-        <button @click="register">Register!</button>
+        <button @click="register()">Register!</button>
         <button @click="login()">Login!</button>
         <button @click="signOut"> Signout! </button>
     </div>
