@@ -31,6 +31,13 @@ export default defineStore("tasks", {
         .from('tasks')
         .insert({user_id: user, title: title, description: description})
         if (error) throw error;
-    }
+    },
+    async updateTasks(id, title, description){
+    const { error } = await supabase
+        .from('tasks')
+        .update({ title:title, description: description })
+        .eq('id', id)
+        if (error) throw error;
+      },
   },
 });
