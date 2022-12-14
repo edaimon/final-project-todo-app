@@ -2,25 +2,63 @@
     <div>
         Dashboard
     </div>
-    <div> 
-        <div v-for="item in tasksStore.tasks" :key="item.id" class="p-10">
-            <div>
-                {{item.title}}
-                {{item.description}}
-                <img src="../img/delete.png" alt="delete icon" width="15">
-                
-                
-                <img src="../img/edit.png" @click="switchValue()" alt="edit icon" width="15" >
+    <div class="flex justify-around"> 
+        <div class="flex flex-col">
+            <h2>TO DO</h2>
+            <div v-for="item in tasksStore.tasks" :key="item.id" class="">  
+                    <div v-if="item.status === 1">
+                        {{item.title}}
+                        {{item.description}}
+                        status:{{item.status}}
+                        <img src="../img/delete.png" @click="deleteTask(item.id)" alt="delete icon" width="15">    
+                        <img src="../img/edit.png" @click="switchValue()" alt="edit icon" width="15" >
 
-                <div v-if="value === true">    
-                    <input type="text" v-model="item.title" name="item.id" id="item.id" placeholder="Introduce your new title" >
-                    <input type="text" v-model="item.description" name="item.id" id="item.id" placeholder="Introduce your new description" >
-                    <img src="../img/confirm_icon.png" @click="editTask(item.id, item.title, item.description), switchValue()"  alt="edit icon" width="15"  >
-                    
-                </div>
-                
+                        <div v-if="value === true">    
+                            <input type="text" v-model="item.title" name="item.id" id="item.id" placeholder="Introduce your new title" >
+                            <input type="text" v-model="item.description" name="item.id" id="item.id" placeholder="Introduce your new description" >
+                            <img src="../img/confirm_icon.png" @click="editTask(item.id, item.title, item.description), switchValue()"  alt="edit icon" width="15"  >
+                        </div> 
+
+                    </div>
+            
             </div>
         </div>
+        <div class="flex flex-col">
+            <h2>DOING</h2>
+            <div v-for="item in tasksStore.tasks" :key="item.id" class="flex flex-col"> 
+                     <div v-if="item.status === 2">
+                
+                        {{item.title}}
+                        {{item.description}}
+                        status:{{item.status}}
+                        <img src="../img/delete.png" @click="deleteTask(item.id)" alt="delete icon" width="15">
+                        <img src="../img/edit.png" @click="switchValue()" alt="edit icon" width="15" >
+                            <div v-if="value === true">    
+                                <input type="text" v-model="item.title" name="item.id" id="item.id" placeholder="Introduce your new title" >
+                                <input type="text" v-model="item.description" name="item.id" id="item.id" placeholder="Introduce your new description" >
+                                <img src="../img/confirm_icon.png" @click="editTask(item.id, item.title, item.description), switchValue()"  alt="edit icon" width="15"  >
+                            </div>    
+                    </div>
+             </div>
+         </div>
+         <div class="flex flex-col">
+            <h2>DONE</h2>
+            <div v-for="item in tasksStore.tasks" :key="item.id" class="flex flex-col"> 
+                     <div v-if="item.status === 3">
+                
+                        {{item.title}}
+                        {{item.description}}
+                        status:{{item.status}}
+                        <img src="../img/delete.png" @click="deleteTask(item.id)" alt="delete icon" width="15">
+                        <img src="../img/edit.png" @click="switchValue()" alt="edit icon" width="15" >
+                            <div v-if="value === true">    
+                                <input type="text" v-model="item.title" name="item.id" id="item.id" placeholder="Introduce your new title" >
+                                <input type="text" v-model="item.description" name="item.id" id="item.id" placeholder="Introduce your new description" >
+                                <img src="../img/confirm_icon.png" @click="editTask(item.id, item.title, item.description), switchValue()"  alt="edit icon" width="15"  >
+                            </div>    
+                    </div>
+             </div>
+         </div>
     </div>
     
     <div>
@@ -60,7 +98,11 @@ export default {
 
         async editTask(id, title , description){
             await this.tasksStore.updateTasks(id, title, description)
-            console.log(id)
+        },
+
+        async deleteTask(id){
+            await this.tasksStore.deleteTasks(id)
+            await this.tasksStore.fetchTasks()
         },
 
         switchValue(){
