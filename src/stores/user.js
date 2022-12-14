@@ -11,21 +11,23 @@ export default defineStore("user", {
   },
 
   actions: {
+
     async fetchUser() {
       const user = await supabase.auth.user();
       this.user = user;
     },
+
     async signUp(email, password) {
       const response = await supabase.auth.signUp({
-        email: "example@email.com",
-        password: "example-password",
+        email: email,
+        password: password,
       });
 
       const data = response.data;
       const error = response.error;
 
       if (error) throw error;
-      if (user) this.user = data.user;
+      if (data) this.user = data.user;
     },
 
     async signIn(email, password) {

@@ -12,6 +12,8 @@ export default defineStore("tasks", {
   state() {
     return {
       tasks: [],
+      id: null,
+      title: null,
     };
   },
 
@@ -25,5 +27,11 @@ export default defineStore("tasks", {
       this.tasks = tasks;
       console.log(this.tasks)
     },
+    async insertTasks(){
+    const { data, error } = await supabase
+        .from('tasks')
+        .insert({ id: id, title: title})
+        .select()
+    }
   },
 });
