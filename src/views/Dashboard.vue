@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col">
     <div class="p-5 font-sans font-bold text-3xl color-dark-blue">Dashboard</div>
-    <div class="flex justify-around">
+    <div class="flex lg:flex-row flex-col justify-around">
       <columns />
     </div>
   </div>
