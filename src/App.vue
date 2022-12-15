@@ -1,13 +1,20 @@
 <template class="m-0 p-0 scroll-smooth">
   <header id="header">
-    <div class="flex flex-wrap justify-between w-auto">
-      <RouterLink class="item h-auto px-10 py-5" to="/"><img src="./assets/logo-taskie-web.png" alt="logo" width="180"/></RouterLink>
-      <RouterLink class="item h-auto px-10 py-5" to="/Dashboard" custom><img src="./assets/user.svg" alt="user" width="36" /></RouterLink>
-      <button @click="signOut" >Signout!</button> 
-          
-        
+    <div class="flex flex-wrap justify-between m-auto">
+      <div class="item h-auto px-20 py-10 align-middle">
+      <RouterLink to="/"><img src="./assets/logo-taskie-web.png" alt="logo" width="180"/></RouterLink>
     </div>
+      <div class="item h-auto px-20 py-10 align-middle">
+        <!-- <RouterLink " to="/Dashboard"><button @click="signOut" >Signout</button></RouterLink> -->
+        <button v-if="!!userStore.user" @click="signOut"><img src="./assets/logout-icon.svg" alt="user" width="36"/>Signout</button>
+       </div>
+          
+    </div>
+
+    
+
   </header>
+ 
 
   <RouterView />
 </template>
@@ -25,15 +32,18 @@ export default {
   },
 
   methods: {
-    signOut() {
-      this.userStore.signOut();
+    async signOut() {
+      await this.userStore.signOut();
       this.$router.push("/");
+      // this.$forceUpdate();
       
     },
 
   },
 
-    
+  // mounted() {
+  //   this.$router.push('/');
+  // },
 };
 </script>
 
