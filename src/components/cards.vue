@@ -22,7 +22,7 @@
             width="20"
             />
       </div>
-      <div v-if="value === true" class="bg-sky-blue p-2 flex gap-2 my-2">
+      <div v-if="value === true" class="bg-yellow p-2 flex flex-col gap-2 my-2 rounded-xl">
         <input
           type="text"
           v-model="item.title"
