@@ -21,7 +21,7 @@
       />
       </div>
       
-      <div v-if="valueToDo === true" class="flex flex-col bg-sky-blue p-2 m-2 gap-2">
+      <div v-if="valueToDo === true" class="flex flex-col p-2 m-4 gap-2 bg-yellow rounded-xl">
         <input
           type="text"
           v-model="title"
@@ -67,7 +67,7 @@
         width="20"
       />
       </div>
-      <div v-if="valueDoing === true" class="flex flex-col bg-sky-blue p-2 m-2 gap-2">
+      <div v-if="valueDoing === true" class="flex flex-col p-2 m-4 gap-2 bg-yellow rounded-xl">
         <input
           type="text"
           v-model="title"
@@ -113,7 +113,7 @@
         width="20"
       />
       </div>
-      <div v-if="valueDone === true" class="flex flex-col bg-sky-blue p-2 m-2 gap-2">
+      <div v-if="valueDone === true" class="flex flex-col p-2 m-4 gap-2 bg-yellow rounded-xl">
         <input
           type="text"
           v-model="title"
