@@ -102,7 +102,6 @@
 
         </div>
       </div>
-      <!-- END MODIFICAR TASK -->
     
     <div class="pt-10">
       <!-- INSERTAR TAREAS   -->
@@ -118,15 +117,15 @@
         <input
           type="text"
           v-model="title"
-          name="task"
-          id="task"
+          name="task-title"
+          id="task-title"
           placeholder="title"
         />
         <input
           type="text"
           v-model="description"
-          name="task"
-          id="task"
+          name="task-description"
+          id="task-description"
           placeholder="description"
         />
         <img

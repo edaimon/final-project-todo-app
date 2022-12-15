@@ -1,10 +1,11 @@
 <template>
 
-      <div class="flex flex-col bg-white rounded-lg p-2 my-2">
-        <div class="font-bold color-dark-blue uppercase">title: {{ item.title }}</div>
-        <div>description: {{ item.description }}</div>
-        <div>status:{{ item.status }}</div>
+      <div v-if="value === false" class="flex flex-col bg-white rounded-lg p-2 my-2" >
+        <div class="font-bold color-dark-blue uppercase">{{ item.title }}</div>
+        <div>{{ item.description }}</div>
+        <div>{{ item.status }}</div>
       </div>
+     
       <div class="flex justify-end gap-4">
             <img
             src="../img/delete.png"
@@ -45,6 +46,7 @@
           width="20"
         />
       </div>
+
       <!-- END MODIFICAR TASK -->
 
 </template>
