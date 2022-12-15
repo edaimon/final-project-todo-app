@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="p-5">
         Dashboard
     </div>
     <div class="flex justify-around"> 
@@ -20,6 +20,9 @@ export default{
 
 </script>
 
-<style>
-
+<style scoped>
+* {
+  padding: 0;
+  margin: 0;
+}
 </style>
