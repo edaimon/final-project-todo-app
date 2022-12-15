@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col">
-    <h2 class="p-10">TO DO (status 1)</h2>
-    <div v-for="item in tasksStore.tasks" :key="item.id" class="">
-      <div v-if="item.status === 1" class="border-2 border-black m-1 p-2">
+    <h2 class="p-10 text-lg font-bold">TO DO (status 1)</h2>
+    <div v-for="item in tasksStore.tasks" :key="item.id" class="flex flex-col">
+      <div v-if="item.status === 1" class="border-2 border-black m-1 p-2 bg-medium-blue rounded-xl">
 
 
         <cards :item="item"/>
@@ -16,10 +16,10 @@
         src="../img/icono_suma.png"
         @click="switchValueToDo()"
         alt="icono suma"
-        width="15"
-        class="bg-slate-500 rounded-full"
+        width="20"
+        class="bg-sky-blue rounded-full"
       />
-      <div v-if="valueToDo === true">
+      <div v-if="valueToDo === true" class="flex flex-row bg-sky-blue p-2 m-2">
         <input
           type="text"
           v-model="title"
@@ -38,16 +38,16 @@
           src="../img/confirm_icon.png"
           @click="insert(), switchValueToDo()"
           alt="edit icon"
-          width="15"
+          width="20"
         />
       </div>
     </div>
   </div>
 
   <div class="flex flex-col">
-    <h2 class="p-10">DOING (status 2)</h2>
+    <h2 class="p-10 text-lg font-bold">DOING (status 2)</h2>
     <div v-for="item in tasksStore.tasks" :key="item.id" class="flex flex-col">
-      <div v-if="item.status === 2" class="border-2 border-black m-1 p-2">
+      <div v-if="item.status === 2" class="border-2 border-black m-1 p-2 bg-medium-blue rounded-xl">
 
 
         <cards :item="item"/>
@@ -61,10 +61,10 @@
         src="../img/icono_suma.png"
         @click="switchValueDoing()"
         alt="icono suma"
-        width="15"
-        class="bg-slate-500 rounded-full"
+        width="20"
+        class="bg-sky-blue rounded-full"
       />
-      <div v-if="valueDoing === true">
+      <div v-if="valueDoing === true" class="flex flex-row bg-sky-blue p-2 m-2">
         <input
           type="text"
           v-model="title"
@@ -83,15 +83,15 @@
           src="../img/confirm_icon.png"
           @click="insert(), switchValueDoing()"
           alt="edit icon"
-          width="15"
+          width="20"
         />
       </div>
     </div>
   </div>
   <div class="flex flex-col">
-    <h2 class="p-10">DONE (status 3)</h2>
+    <h2 class="p-10 text-lg font-bold">DONE (status 3)</h2>
     <div v-for="item in tasksStore.tasks" :key="item.id" class="flex flex-col">
-      <div v-if="item.status === 3" class="border-2 border-black m-1 p-2">
+      <div v-if="item.status === 3" class="border-2 border-black m-1 p-2 bg-medium-blue rounded-xl">
 
 
         <cards :item="item"/>
@@ -100,17 +100,17 @@
         </div>
       </div>
       <!-- END MODIFICAR TASK -->
-    </div>
+    
     <div class="pt-10">
       <!-- INSERTAR TAREAS   -->
       <img
         src="../img/icono_suma.png"
         @click="switchValueDone()"
         alt="icono suma"
-        width="15"
-        class="bg-slate-500 rounded-full"
+        width="20"
+        class="bg-sky-blue rounded-full"
       />
-      <div v-if="valueDone === true">
+      <div v-if="valueDone === true" class="flex flex-row bg-sky-blue p-2 m-2">
         <input
           type="text"
           v-model="title"
@@ -129,11 +129,11 @@
           src="../img/confirm_icon.png"
           @click="insert(), switchValueDone()"
           alt="edit icon"
-          width="15"
+          width="20"
         />
       </div>
     </div>
-
+  </div>
 </template>
 
 <script>
