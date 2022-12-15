@@ -88,6 +88,7 @@
       </div>
     </div>
   </div>
+  
   <div class="flex flex-col">
     <h2 class="p-10 text-lg font-bold">DONE (status 3)</h2>
     <div v-for="item in tasksStore.tasks" :key="item.id" class="flex flex-col">
@@ -99,7 +100,6 @@
 
         </div>
       </div>
-      <!-- END MODIFICAR TASK -->
     
     <div class="pt-10">
       <!-- INSERTAR TAREAS   -->
@@ -114,15 +114,15 @@
         <input
           type="text"
           v-model="title"
-          name="task"
-          id="task"
+          name="task-title"
+          id="task-title"
           placeholder="title"
         />
         <input
           type="text"
           v-model="description"
-          name="task"
-          id="task"
+          name="task-description"
+          id="task-description"
           placeholder="description"
         />
         <img

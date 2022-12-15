@@ -35,9 +35,10 @@ export default defineStore("tasks", {
     async updateTasks(id, title, description){
     const { error } = await supabase
         .from('tasks')
-        .update({ title:title, description: description })
+        .update({ title:title, description: description})
         .eq('id', id)
         if (error) throw error;
+        
       },
 
       async deleteTasks(id){
