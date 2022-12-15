@@ -19,7 +19,7 @@
         width="20"
         class="bg-sky-blue rounded-full mx-auto"
       />
-      <div v-if="valueToDo === true" class="flex flex-row bg-sky-blue p-2 m-2 gap-2">
+      <div v-if="valueToDo === true" class="flex flex-col bg-sky-blue p-2 m-2 gap-2">
         <input
           type="text"
           v-model="title"
@@ -64,7 +64,7 @@
         width="20"
         class="bg-sky-blue rounded-full mx-auto"
       />
-      <div v-if="valueDoing === true" class="flex flex-row bg-sky-blue p-2 m-2 gap-2">
+      <div v-if="valueDoing === true" class="flex flex-col bg-sky-blue p-2 m-2 gap-2">
         <input
           type="text"
           v-model="title"
@@ -110,7 +110,7 @@
         width="20"
         class="bg-sky-blue rounded-full mx-auto"
       />
-      <div v-if="valueDone === true" class="flex flex-row bg-sky-blue p-2 m-2 gap-2">
+      <div v-if="valueDone === true" class="flex flex-col bg-sky-blue p-2 m-2 gap-2">
         <input
           type="text"
           v-model="title"
