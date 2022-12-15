@@ -1,11 +1,28 @@
 <template>
 
-      <div v-if="value === false" class="flex flex-col" >
-        <div>{{ item.title }}</div>
+      <div v-if="value === false" class="flex flex-col bg-white rounded-lg p-2 my-2" >
+        <div class="font-bold color-dark-blue uppercase">{{ item.title }}</div>
         <div>{{ item.description }}</div>
         <div>{{ item.status }}</div>
       </div>
-      <div v-if="value === true" class="flex flex-col" >
+     
+      <div class="flex justify-end gap-4">
+            <img
+            src="../img/delete.png"
+            @click="deleteTask(item.id)"
+            alt="delete icon"
+            width="20"
+            />
+
+            <!-- MODIFICAR TASK -->
+            <img
+            src="../img/edit.png"
+            @click="switchValue(id)"
+            alt="edit icon"
+            width="20"
+            />
+      </div>
+      <div v-if="value === true" class="bg-sky-blue p-2 flex gap-2 my-2">
         <input
           type="text"
           v-model="item.title"
@@ -26,7 +43,7 @@
             editTask(item.id, item.title, item.description), switchValue()
           "
           alt="edit icon"
-          width="15"
+          width="20"
         />
       </div>
       <div class="flex justify-end">
