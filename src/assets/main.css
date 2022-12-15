@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --skyBlue: #8ecae6;
+    --mediumBlue: #219ebc;
+    --darkBlue: #023047;
+    --yellow: #ffb703;
+    --orange: #fb8500;
+}
+
+.color-sky-blue{
+    color:var(--skyBlue);
+}
+.color-medium-blue{
+    color:var(--mediumBlue)
+}
+.color-dark-blue{
+    color: var(--darkBlue);
+}
+.color-yellow{
+    color: var(--yellow);
+}
+.color-orange{
+    color: var(--orange);
+}
+.bg-sky-blue{
+    background-color: var(--skyBlue);
+}
+.bg-medium-blue{
+    background-color: var(--mediumBlue);
+}
+.bg-dark-blue{
+    background-color: var(--darkBlue);
+}
+.bg-yellow{
+    background-color: var(--yellow);
+}
+.bg-orange{
+    background-color: var(--orange);
+}
