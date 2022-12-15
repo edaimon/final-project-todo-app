@@ -10,7 +10,7 @@
             src="../img/delete.png"
             @click="deleteTask(item.id)"
             alt="delete icon"
-            width="20"
+            width="25"
             />
 
             <!-- MODIFICAR TASK -->

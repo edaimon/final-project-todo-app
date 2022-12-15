@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <div class="p-5 font-sans font-bold text-3xl color-dark-blue">Dashboard</div>
+    <div class="p-5 font-sans font-bold text-5xl color-dark-blue ml-7 my-8">Dashboard</div>
     <div class="flex lg:flex-row flex-col justify-around">
       <columns />
     </div>

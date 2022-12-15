@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col">
-    <h2 class="p-10 text-lg font-bold">TO DO (status 1)</h2>
+  <div class="flex flex-col bg-gradient-to-r from-cyan-500 to-blue-500 lg:w-1/4 rounded-3xl py-4 shadow-lg shadow-blue-500 w-auto">
+    <h2 class="p-10 text-xl font-bold text-white text-center">TO DO (status 1)</h2>
     <div v-for="item in tasksStore.tasks" :key="item.id" class="flex flex-col">
-      <div v-if="item.status === 1" class="border-2 border-black m-1 p-2 bg-medium-blue rounded-xl">
+      <div v-if="item.status === 1" class="mx-3 my-1 p-2 bg-white rounded-xl">
 
 
         <cards :item="item"/>
@@ -12,13 +12,15 @@
     </div>
     <div class="pt-10">
       <!--  INSERTAR TAREAS -->
-      <img
+      <div class="bg-orange w-max rounded-full mx-auto p-3">
+        <img
         src="../img/icono_suma.png"
         @click="switchValueToDo()"
         alt="icono suma"
         width="20"
-        class="bg-sky-blue rounded-full mx-auto"
       />
+      </div>
+      
       <div v-if="valueToDo === true" class="flex flex-col bg-sky-blue p-2 m-2 gap-2">
         <input
           type="text"
@@ -44,10 +46,10 @@
     </div>
   </div>
 
-  <div class="flex flex-col">
-    <h2 class="p-10 text-lg font-bold">DOING (status 2)</h2>
+  <div class="flex flex-col bg-blue-500 lg:w-1/4 rounded-3xl py-4 shadow-lg shadow-blue-500 w-auto">
+    <h2 class="p-10 text-xl font-bold text-white text-center">DOING (status 2)</h2>
     <div v-for="item in tasksStore.tasks" :key="item.id" class="flex flex-col">
-      <div v-if="item.status === 2" class="border-2 border-black m-1 p-2 bg-medium-blue rounded-xl">
+      <div v-if="item.status === 2" class="mx-3 my-1 p-2 bg-white rounded-xl">
 
 
         <cards :item="item"/>
@@ -57,13 +59,14 @@
     </div>
     <div class="pt-10">
       <!-- INSERTAR TAREAS  -->
-      <img
+      <div class="bg-orange w-max rounded-full mx-auto p-3">
+        <img
         src="../img/icono_suma.png"
         @click="switchValueDoing()"
         alt="icono suma"
         width="20"
-        class="bg-sky-blue rounded-full mx-auto"
       />
+      </div>
       <div v-if="valueDoing === true" class="flex flex-col bg-sky-blue p-2 m-2 gap-2">
         <input
           type="text"
@@ -88,10 +91,10 @@
       </div>
     </div>
   </div>
-  <div class="flex flex-col">
-    <h2 class="p-10 text-lg font-bold">DONE (status 3)</h2>
+  <div class="flex flex-col bg-gradient-to-r from-blue-500 to-cyan-500 lg:w-1/4 rounded-3xl py-4 shadow-lg shadow-blue-500 w-auto">
+    <h2 class="p-10 text-xl font-bold text-white text-center">DONE (status 3)</h2>
     <div v-for="item in tasksStore.tasks" :key="item.id" class="flex flex-col">
-      <div v-if="item.status === 3" class="border-2 border-black m-1 p-2 bg-medium-blue rounded-xl">
+      <div v-if="item.status === 3" class="mx-3 my-1 p-2 bg-white rounded-xl">
 
 
         <cards :item="item"/>
@@ -103,13 +106,14 @@
     
     <div class="pt-10">
       <!-- INSERTAR TAREAS   -->
-      <img
+      <div class="bg-orange w-max rounded-full mx-auto p-3">
+        <img
         src="../img/icono_suma.png"
         @click="switchValueDone()"
         alt="icono suma"
         width="20"
-        class="bg-sky-blue rounded-full mx-auto"
       />
+      </div>
       <div v-if="valueDone === true" class="flex flex-col bg-sky-blue p-2 m-2 gap-2">
         <input
           type="text"
