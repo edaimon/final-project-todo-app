@@ -46,22 +46,6 @@
           width="20"
         />
       </div>
-      <div class="flex justify-end">
-            <img
-            src="../img/delete.png"
-            @click="deleteTask(item.id)"
-            alt="delete icon"
-            width="15"
-            />
-
-            <!-- MODIFICAR TASK -->
-            <img
-            src="../img/edit.png"
-            @click="switchValue(id)"
-            alt="edit icon"
-            width="15"
-            />
-      </div>
 
       <!-- END MODIFICAR TASK -->
 
