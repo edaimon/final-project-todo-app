@@ -27,13 +27,10 @@ export default {
   methods: {
     signOut() {
       this.userStore.signOut();
-      
+      this.$router.push("/");
       
     },
 
-    // reloadPage() {
-    //   window.location.reload();
-    // },
   },
 
     
