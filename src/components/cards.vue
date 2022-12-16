@@ -1,5 +1,12 @@
 <template>
 
+  <div v-if="item.status === 1 || item.status === 2"> 
+    <input type="checkbox" name="mark" id="mark" @click="switchCheckStatus()">
+  </div>
+  <div v-if="item.status === 3"> 
+    <input type="checkbox" name="mark" id="mark" checked @click="switchCheckStatus()">
+  </div>
+
       <div v-if="value === false" class="flex flex-col bg-white rounded-lg p-2 my-2" >
         <div class="font-bold color-dark-blue uppercase">{{ item.title }}</div>
         <div>{{ item.description }}</div>
@@ -64,6 +71,9 @@ export default{
     computed:{
         ...mapStores(tasksStore),
         ...mapStores(userStore),
+        checkStatus(){
+          return this.item.status === 3
+        }
     },
 
     props: [
@@ -87,6 +97,17 @@ methods:{
         this.value = true;
       }
     },
+
+    async switchCheckStatus(){
+      if (this.item.status != 3){
+        this.item.status = 3
+      } else if (this.item.status === 3){
+        this.item.status = 1
+      }
+      console.log("checkstatus= " + this.checkStatus)
+      await this.tasksStore.checkTasks(this.item.id, this.item.status);
+      await this.tasksStore.fetchTasks();
+    }
 
 }
     

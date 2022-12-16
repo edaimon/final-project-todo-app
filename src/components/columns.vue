@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col bg-gradient-to-r from-cyan-500 to-blue-500 lg:w-1/4 rounded-3xl py-4 shadow-lg shadow-blue-500 w-auto">
+  <div class="flex flex-col bg-gradient-to-r from-cyan-500 to-blue-500 lg:w-1/4 rounded-3xl py-4 shadow-lg shadow-blue-500 w-3/4 mx-auto my-6">
     <h2 class="p-10 text-xl font-bold text-white text-center">TO DO (status 1)</h2>
     <div v-for="item in tasksStore.tasks" :key="item.id" class="flex flex-col">
       <div v-if="item.status === 1" class="mx-3 my-1 p-2 bg-white rounded-xl">
@@ -38,7 +38,7 @@
         />
         <img
           src="../img/confirm_icon.png"
-          @click="insert(), switchValueToDo()"
+          @click="insert(1), switchValueToDo()"
           alt="edit icon"
           width="20"
         />
@@ -46,7 +46,7 @@
     </div>
   </div>
 
-  <div class="flex flex-col bg-blue-500 lg:w-1/4 rounded-3xl py-4 shadow-lg shadow-blue-500 w-auto">
+  <div class="flex flex-col bg-blue-500 lg:w-1/4 rounded-3xl py-4 shadow-lg shadow-blue-500 w-3/4 mx-auto my-6">
     <h2 class="p-10 text-xl font-bold text-white text-center">DOING (status 2)</h2>
     <div v-for="item in tasksStore.tasks" :key="item.id" class="flex flex-col">
       <div v-if="item.status === 2" class="mx-3 my-1 p-2 bg-white rounded-xl">
@@ -84,14 +84,14 @@
         />
         <img
           src="../img/confirm_icon.png"
-          @click="insert(), switchValueDoing()"
+          @click="insert(2), switchValueDoing()"
           alt="edit icon"
           width="20"
         />
       </div>
     </div>
   </div>
-  <div class="flex flex-col bg-gradient-to-r from-blue-500 to-cyan-500 lg:w-1/4 rounded-3xl py-4 shadow-lg shadow-blue-500 w-auto">
+  <div class="flex flex-col bg-gradient-to-r from-blue-500 to-cyan-500 lg:w-1/4 rounded-3xl py-4 shadow-lg shadow-blue-500 w-3/4 mx-auto my-6">
     <h2 class="p-10 text-xl font-bold text-white text-center">DONE (status 3)</h2>
     <div v-for="item in tasksStore.tasks" :key="item.id" class="flex flex-col">
       <div v-if="item.status === 3" class="mx-3 my-1 p-2 bg-white rounded-xl">
@@ -130,7 +130,7 @@
         />
         <img
           src="../img/confirm_icon.png"
-          @click="insert(), switchValueDone()"
+          @click="insert(3), switchValueDone()"
           alt="edit icon"
           width="20"
         />
@@ -150,6 +150,7 @@ export default {
     return {
       title: null,
       description: null,
+      status: null,
       valueToDo: false,
       valueDoing: false,
       valueDone: false,
@@ -165,11 +166,12 @@ export default {
   },
   methods: {
     /* INSERTAR TAREAS */
-    async insert() {
+    async insert(status) {
       await this.tasksStore.insertTasks(
         this.userStore.user.id,
         this.title,
-        this.description
+        this.description,
+        status
       );
       await this.tasksStore.fetchTasks();
     },

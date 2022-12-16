@@ -26,10 +26,10 @@ export default defineStore("tasks", {
 
       this.tasks = tasks;
     },
-    async insertTasks(user, title, description){
+    async insertTasks(user, title, description, status){
     const { error } = await supabase
         .from('tasks')
-        .insert({user_id: user, title: title, description: description})
+        .insert({user_id: user, title: title, description: description, status: status})
         if (error) throw error;
     },
     async updateTasks(id, title, description){
@@ -45,6 +45,13 @@ export default defineStore("tasks", {
         const { error } = await supabase
           .from('tasks')
           .delete("*")
+          .eq('id', id)
+          if (error) throw error;
+      },
+      async checkTasks(id, status){
+        const { error } = await supabase
+          .from('tasks')
+          .update({status:status})
           .eq('id', id)
           if (error) throw error;
       }
