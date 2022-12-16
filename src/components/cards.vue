@@ -1,18 +1,19 @@
 <template>
 
-  <div v-if="item.status === 1 || item.status === 2"> 
-    <input type="checkbox" name="mark" id="mark" @click="switchCheckStatus()">
-  </div>
-  <div v-if="item.status === 3"> 
-    <input type="checkbox" name="mark" id="mark" checked @click="switchCheckStatus()">
-  </div>
-
       <div v-if="value === false" class="flex flex-col bg-white rounded-lg p-2 my-2" >
         <div class="font-bold color-dark-blue uppercase">{{ item.title }}</div>
         <div>{{ item.description }}</div>
-        <div>{{ item.status }}</div>
 
-        <div class="flex justify-end gap-4">
+        <div class="flex justify-between gap-4">
+
+          <div v-if="item.status === 1 || item.status === 2"> 
+            <input type="checkbox" name="mark" id="mark" @click="switchCheckStatus()">
+          </div>
+         <div v-if="item.status === 3"> 
+            <input type="checkbox" name="mark" id="mark" checked @click="switchCheckStatus()">
+          </div>
+
+          <div class="flex justify-around">
             <img
             src="../img/delete.png"
             @click="deleteTask(item.id)"
@@ -27,6 +28,7 @@
             alt="edit icon"
             width="20"
             />
+          </div>
       </div>
       
       </div>

@@ -8,7 +8,6 @@
 </template>
 
 <script>
-
 import columns from "../components/columns.vue";
 
 export default {
@@ -16,7 +15,6 @@ export default {
     columns,
   },
 };
-
 </script>
 
 <style scoped>
