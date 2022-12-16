@@ -1,7 +1,7 @@
 <template>
 
 
-    <div class=" sizeContainer bg-blue-400 flex justify-center items-center box-border textColor">
+    <div class=" sizeContainer bg-blue-400 flex justify-center items-center box-border color-dark-blue">
         <!-- SIGN IN FORM -->
             <div v-if="switchForm === false" class="sizeContainer flex flex-col justify-around bg-white  min-w-fit"> <!-- PONER AQUI EL FALSE SE MOSTRARA EL FORM DEL SIGNIN -->
                 <div class="sizeContainerForm flex flex-col justify-center">
@@ -96,9 +96,6 @@ export default {
 
 <style>
 
-.textColor{
-    color: 02304;
-}
 
 .imgPosition{
     position:absolute;
