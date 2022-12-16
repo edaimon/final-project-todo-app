@@ -3,16 +3,12 @@
     <h2 class="p-10 text-xl font-bold text-white text-center">TO DO</h2>
     <div v-for="item in tasksStore.tasks" :key="item.id" draggable="true" @dragstart="startDrag($event, item)" class="flex flex-col">
       <div v-if="item.status === 1" class="mx-3 my-1 p-2 bg-white rounded-xl">
-
-
         <cards :item="item"/>
-
-
       </div>
     </div>
     <div class="pt-10">
       <!--  INSERTAR TAREAS -->
-      <div class="bg-orange w-max rounded-full mx-auto p-3">
+      <div v-if="valueToDo === false" class="bg-orange w-max rounded-full mx-auto p-3">
         <img
         src="../img/icono_suma.png"
         @click="switchValueToDo()"
@@ -20,14 +16,26 @@
         width="20"
       />
       </div>
-      
-      <div v-if="valueToDo === true" class="flex flex-col p-2 m-4 gap-2 bg-yellow rounded-xl">
+      <div v-if="valueToDo === true" class="flex justify-around">
+          <img
+            src="../img/confirm_icon.png"
+            @click="insert(1), switchValueToDo()"
+            alt="edit icon"
+            width="40"
+            class="bg-white border-2 border-green-500 rounded-full p-1"
+          />
+          <img src="../img/cancel.png" @click="switchValueToDo()" alt="cancel icon" width="40" class="bg-white border-2 border-red-500 rounded-full p-1">
+      </div>
+
+      <div v-if="valueToDo === true" class="flex flex-col p-2 m-4 gap-2 bg-white rounded-xl">
         <input
           type="text"
           v-model="title"
           name="task"
           id="task"
           placeholder="title"
+          class="font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2"
+          
         />
         <input
           type="text"
@@ -35,12 +43,7 @@
           name="task"
           id="task"
           placeholder="description"
-        />
-        <img
-          src="../img/confirm_icon.png"
-          @click="insert(1), switchValueToDo()"
-          alt="edit icon"
-          width="20"
+          class="pt-5 px-2"
         />
       </div>
     </div>
@@ -59,7 +62,7 @@
     </div>
     <div class="pt-10">
       <!-- INSERTAR TAREAS  -->
-      <div class="bg-orange w-max rounded-full mx-auto p-3">
+      <div v-if="valueDoing === false" class="bg-orange w-max rounded-full mx-auto p-3">
         <img
         src="../img/icono_suma.png"
         @click="switchValueDoing()"
@@ -67,13 +70,25 @@
         width="20"
       />
       </div>
-      <div v-if="valueDoing === true" class="flex flex-col p-2 m-4 gap-2 bg-yellow rounded-xl">
+      <div v-if="valueDoing === true" class="flex justify-around">
+          <img
+            src="../img/confirm_icon.png"
+            @click="insert(2), switchValueDoing()"
+            alt="edit icon"
+            width="40"
+            class="bg-white border-2 border-green-500 rounded-full p-1"
+          />
+          <img src="../img/cancel.png" @click="switchValueDoing()" alt="cancel icon" width="40" class="bg-white border-2 border-red-500 rounded-full p-1">
+      </div>
+      <div v-if="valueDoing === true" class="flex flex-col p-2 m-4 gap-2 bg-white rounded-xl">
         <input
           type="text"
           v-model="title"
           name="task"
           id="task"
           placeholder="title"
+          class="font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2"
+          
         />
         <input
           type="text"
@@ -81,16 +96,13 @@
           name="task"
           id="task"
           placeholder="description"
-        />
-        <img
-          src="../img/confirm_icon.png"
-          @click="insert(2), switchValueDoing()"
-          alt="edit icon"
-          width="20"
+          class="pt-5 px-2"
         />
       </div>
     </div>
   </div>
+
+  
   <div class="flex flex-col bg-gradient-to-r from-blue-500 to-cyan-500 lg:w-1/4 rounded-3xl py-4 shadow-lg shadow-blue-500 w-3/4 mx-auto my-6" @drop="onDrop($event, 3)" @dragover.prevent @dragenter.prevent>
     <h2 class="p-10 text-xl font-bold text-white text-center">DONE</h2>
     <div v-for="item in tasksStore.tasks" :key="item.id" draggable="true" @dragstart="startDrag($event, item)" class="flex flex-col">
@@ -105,7 +117,7 @@
     
     <div class="pt-10">
       <!-- INSERTAR TAREAS   -->
-      <div class="bg-orange w-max rounded-full mx-auto p-3">
+      <div v-if="valueDone === false" class="bg-orange w-max rounded-full mx-auto p-3">
         <img
         src="../img/icono_suma.png"
         @click="switchValueDone()"
@@ -113,27 +125,37 @@
         width="20"
       />
       </div>
-      <div v-if="valueDone === true" class="flex flex-col p-2 m-4 gap-2 bg-yellow rounded-xl">
+      <div v-if="valueDone === true" class="flex justify-around">
+          <img
+            src="../img/confirm_icon.png"
+            @click="insert(3), switchValueDone()"
+            alt="edit icon"
+            width="40"
+            class="bg-white border-2 border-green-500 rounded-full p-1"
+          />
+          <img src="../img/cancel.png" @click="switchValueDone()" alt="cancel icon" width="40" class="bg-white border-2 border-red-500 rounded-full p-1">
+      </div>
+
+      <div v-if="valueDone === true" class="flex flex-col p-2 m-4 gap-2 bg-white rounded-xl">
+
         <input
           type="text"
           v-model="title"
-          name="task-title"
-          id="task-title"
+          name="task"
+          id="task"
           placeholder="title"
+          class="font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2"
+          
         />
         <input
           type="text"
           v-model="description"
-          name="task-description"
-          id="task-description"
+          name="task"
+          id="task"
           placeholder="description"
+          class="pt-5 px-2"
         />
-        <img
-          src="../img/confirm_icon.png"
-          @click="insert(3), switchValueDone()"
-          alt="edit icon"
-          width="20"
-        />
+
       </div>
     </div>
   </div>
