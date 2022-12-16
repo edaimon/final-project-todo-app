@@ -1,10 +1,10 @@
 <template>
 
       <div v-if="value === false" class="flex flex-col bg-white rounded-lg p-2 my-2" >
-        <div class="font-bold color-dark-blue uppercase">{{ item.title }}</div>
-        <div>{{ item.description }}</div>
+        <div class="font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2">{{ item.title }}</div>
+        <div class="pt-5 px-2">{{ item.description }}</div>
 
-        <div class="flex justify-between gap-4">
+        <div class="flex justify-between gap-4 pt-10">
 
           <div v-if="item.status === 1 || item.status === 2"> 
             <input type="checkbox" name="mark" id="mark" @click="switchCheckStatus()">
@@ -43,6 +43,7 @@
           placeholder="Introduce your new title"
         />
         <textarea
+          class="pt-5"
           type="text"
           v-model="item.description"
           name="item.id"
@@ -122,4 +123,8 @@ methods:{
 }
 </script>
 
-<style></style>
+<style>
+.borderColor{
+  border-color: #fb8500;
+}
+</style>
