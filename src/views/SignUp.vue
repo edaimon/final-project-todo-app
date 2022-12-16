@@ -6,11 +6,11 @@
             <div v-if="switchForm === false" class="sizeContainer flex flex-col justify-around bg-white  min-w-fit"> <!-- PONER AQUI EL FALSE SE MOSTRARA EL FORM DEL SIGNIN -->
                 <div class="sizeContainerForm flex flex-col justify-center">
                     <h2 class="m-5 text-center text-5xl font-bold textColor">SIGN IN</h2>
-                    <form action="submit" class="flex flex-col justify-evenly h-1/3">
+                    <form action="submit" @submit.prevent="login()" class="flex flex-col justify-evenly h-1/3">
                         <input type="text" v-model="email" placeholder="Enter your email" class=" border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 ml-28 mr-28 h-14">
                         <input type="password" v-model="password" name="password" placeholder="Enter your password" class=" border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 ml-28 mr-28 h-14">
                         <div class="flex justify-center pt-5">
-                            <button @click="login()" class="loginBtt rounded-lg w-64 h-16 text-center text-white font-bold shadow-xl">LOGIN!</button>
+                            <button class="loginBtt rounded-lg w-64 h-16 text-center text-white font-bold shadow-xl">LOGIN!</button>
                         </div>     
                     </form>       
                     <div class="flex justify-center pt-5">
@@ -25,12 +25,12 @@
             <div v-if="switchForm === true" class="sizeContainer flex flex-col items-end bg-white min-w-fit">  <!--PONER QUE SI LA VARIABLE SE CONVIERTE EN TRU SE MUESTRA ESTA -->
                 <div class="sizeContainerForm flex flex-col justify-center">
                     <h2 class="m-5 text-center text-5xl font-bold textColor"> SIGN UP</h2>
-                    <form action="sumbit" class="flex flex-col justify-evenly h-1/3">
+                    <form action="sumbit" @submit.prevent="register(), login()"  class="flex flex-col justify-evenly h-1/3">
                             <input type="text" v-model="email" placeholder="Enter your mail" class=" border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 ml-28 mr-28 h-14">
                             <input type="password" v-model="password" name="password" placeholder="Enter your password" class=" border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 ml-28 mr-28 h-14">
                         
                         <div class="flex justify-center pt-5">
-                            <button @click="register()" class="loginBtt rounded-lg w-64 h-16 text-center text-white font-bold shadow-xl">REGISTER!</button>
+                            <button class="loginBtt rounded-lg w-64 h-16 text-center text-white font-bold shadow-xl">REGISTER!</button>
                         </div>
                     </form>
                     <div class="flex justify-center pt-5">
@@ -70,14 +70,17 @@ export default {
     },
 
     methods: {
-        register() {
+
+       register() {
             this.userStore.signUp(this.email, this.password)
+            alert(MessageEvent = "Confirm your mail");
         },
         async login() {
             const signInConfirm = await this.userStore.signIn(this.email, this.password)
+
             if (signInConfirm === 0){
                 this.$router.push("Dashboard");
-            } 
+            }
         },
         signOut(){
             this.userStore.signOut()
@@ -106,18 +109,18 @@ export default {
 }
 
 .sizeContainer{
-    height: 91.5vh;
+    height: 90vh;
     width: 100vw;
     z-index: 1;
 }
 
 .sizeContainerForm{
-    height: 91.5vh;
+    height: 90vh;
     width: 50vw;
 }
 
 .imgSize{
-    height: 91.5vh;
+    height: 90vh;
     object-fit: cover;
 }
 /*

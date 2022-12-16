@@ -15,10 +15,9 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to) => {
-  console.log(to);
-  const userAuth = await supabase.auth.getUser();
-  console.log(userAuth);
-  const isLoggedIn = userAuth.data.user !== null;
+  const userAuth = await supabase.auth.getSession();
+  console.log(userAuth)
+  const isLoggedIn = userAuth.data.session !== null;
 
   if (isLoggedIn && to.name === "signup") {
     return "/dashboard";
@@ -26,6 +25,8 @@ router.beforeEach(async (to) => {
   if (!isLoggedIn && to.name !== "signup") {
     return "/";
   } 
+
+
 })
 
  

@@ -11,9 +11,8 @@
         <div class="font-bold color-dark-blue uppercase">{{ item.title }}</div>
         <div>{{ item.description }}</div>
         <div>{{ item.status }}</div>
-      </div>
-     
-      <div class="flex justify-end gap-4">
+
+        <div class="flex justify-end gap-4">
             <img
             src="../img/delete.png"
             @click="deleteTask(item.id)"
@@ -29,6 +28,10 @@
             width="20"
             />
       </div>
+      
+      </div>
+     
+
       <div v-if="value === true" class="bg-yellow p-2 flex flex-col gap-2 my-2 rounded-xl">
         <input
           type="text"
@@ -37,13 +40,14 @@
           id="item.id"
           placeholder="Introduce your new title"
         />
-        <input
+        <textarea
           type="text"
           v-model="item.description"
           name="item.id"
           id="item.id"
           placeholder="Introduce your new description"
         />
+        <div class="flex justify-end">
         <img
           src="../img/confirm_icon.png"
           @click="
@@ -52,6 +56,8 @@
           alt="edit icon"
           width="20"
         />
+      </div>
+
       </div>
 
       <!-- END MODIFICAR TASK -->
