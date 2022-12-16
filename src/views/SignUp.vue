@@ -1,34 +1,52 @@
 <template>
-    <div class="flex justify-center items-center mt-52">
-        <div class="flex flex-col  bg-white p-10 w-1/3 h-96 rounded-l-xl">
-            <h2 class="m-5 text-center">SIGN IN</h2>
-            <input type="text" v-model="email" placeholder="Enter your mail" class=" border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 m-5">
-            <input type="password" v-model="password" name="password" placeholder="Enter your password" class=" border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 m-5">
-            <div class="flex justify-center pt-5">
-                <button @click="login()" class=" bg-blue-400 rounded-lg w-32 text-center">LOGIN!</button>
-            </div>            
-            <div class="flex justify-center pt-5">
-             <p>you dont have an account?</p>
-             <button @click="switchImage = !switchImage" class="pl-5"> Register!</button>
+
+
+    <div class=" sizeContainer bg-blue-400 flex justify-center items-center box-border textColor">
+        <!-- SIGN IN FORM -->
+            <div v-if="switchForm === false" class="sizeContainer flex flex-col justify-around bg-white  min-w-fit"> <!-- PONER AQUI EL FALSE SE MOSTRARA EL FORM DEL SIGNIN -->
+                <div class="sizeContainerForm flex flex-col justify-center">
+                    <h2 class="m-5 text-center text-5xl font-bold textColor">SIGN IN</h2>
+                    <form action="submit" @submit.prevent="login()" class="flex flex-col justify-evenly h-1/3">
+                        <input type="text" v-model="email" placeholder="Enter your email" class=" border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 ml-28 mr-28 h-14">
+                        <input type="password" v-model="password" name="password" placeholder="Enter your password" class=" border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 ml-28 mr-28 h-14">
+                        <div class="flex justify-center pt-5">
+                            <button class="loginBtt rounded-lg w-64 h-16 text-center text-white font-bold shadow-xl">LOGIN!</button>
+                        </div>     
+                    </form>       
+                    <div class="flex justify-center pt-5">
+                    <p>you dont have an account?</p>
+                    <button @click="switchImage = !switchImage, switchForm = !switchForm" class=" font-bold pl-5"> Register!</button>
+                    </div>
+                </div>
             </div>
 
-         </div>
+         <!-- SIGN UP FORM -->
+         
+            <div v-if="switchForm === true" class="sizeContainer flex flex-col items-end bg-white min-w-fit">  <!--PONER QUE SI LA VARIABLE SE CONVIERTE EN TRU SE MUESTRA ESTA -->
+                <div class="sizeContainerForm flex flex-col justify-center">
+                    <h2 class="m-5 text-center text-5xl font-bold textColor"> SIGN UP</h2>
+                    <form action="sumbit" @submit.prevent="register(), login()"  class="flex flex-col justify-evenly h-1/3">
+                            <input type="text" v-model="email" placeholder="Enter your mail" class=" border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 ml-28 mr-28 h-14">
+                            <input type="password" v-model="password" name="password" placeholder="Enter your password" class=" border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 ml-28 mr-28 h-14">
+                        
+                        <div class="flex justify-center pt-5">
+                            <button class="loginBtt rounded-lg w-64 h-16 text-center text-white font-bold shadow-xl">REGISTER!</button>
+                        </div>
+                    </form>
+                    <div class="flex justify-center pt-5">
+                        <p>Already a user?</p>
+                        <button @click="switchImage = !switchImage, switchForm = !switchForm" class="font-bold pl-5">Login!</button>
+                    </div>
+             </div>
+            </div>  
+            
+            <div class=" imgPosition shadow-2xl" :class="{'imgPositionSwitch': switchImage}">
+                <img src="../img/presentation_1.jpg" alt="img_presentation" class=" imgSize">
+            </div> 
 
-         <div class="flex flex-col  bg-white p-10 w-1/3 h-96 rounded-r-xl">
-            <h2 class="m-5 text-center"> SIGN UP</h2>
-            <input type="text" v-model="email" placeholder="Enter your mail" class=" border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 m-5">
-            <input type="password" v-model="password" name="password" placeholder="Enter your password" class=" border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 m-5">
-            <div class="flex justify-center pt-5">
-                <button @click="register()" class=" bg-blue-400 rounded-lg w-32">REGISTER!</button>
-            </div>
-            <div class="flex justify-center pt-5">
-                <p>Already a user?</p>
-                <button @click="switchImage = !switchImage" class="pl-5">Login!</button>
-            </div>
-        </div>
-<!--         <button @click="signOut"> Signout! </button> -->
-        <img src="../img/presentation_1.jpg" alt="img_presentation" width="700" class="imgPosition rounded-xl" :class="{'imgPositionSwitch': switchImage}">
+       
     </div>
+
 </template>
 
 <script>
@@ -47,26 +65,23 @@ export default {
             email: null,
             password: null,
             switchImage: false,
+            switchForm: false,
         }
     },
 
     methods: {
-        register() {
+
+       register() {
             this.userStore.signUp(this.email, this.password)
+            alert(MessageEvent = "Confirm your mail");
         },
         async login() {
             const signInConfirm = await this.userStore.signIn(this.email, this.password)
+
             if (signInConfirm === 0){
                 this.$router.push("Dashboard");
-            } 
+            }
         },
-
-        switchFormRegister(){
-
-
-
-        },
-
         signOut(){
             this.userStore.signOut()
         },
@@ -75,20 +90,54 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 
-body{
-    background-color: #8ECAE6;
+.textColor{
+    color: 02304;
 }
 
 .imgPosition{
-    position: absolute;
-    right: 280px;
-    transition: transform 1s;
+    position:absolute;
+    right: 0;
+    transition: transform 0.7s;  
+    z-index: 2;
+    width: 50vw;
 }
 
 .imgPositionSwitch{
-
-    transform: translateX(-680px);
+    transform: translateX(-100%);
 }
+
+.sizeContainer{
+    height: 90vh;
+    width: 100vw;
+    z-index: 1;
+}
+
+.sizeContainerForm{
+    height: 90vh;
+    width: 50vw;
+}
+
+.imgSize{
+    height: 90vh;
+    object-fit: cover;
+}
+/*
+.itemSize{
+    width: 100%;
+} */
+
+.loginBtt{
+    background-color: #219ebc;
+}
+
+.loginBtt:hover{
+    background-color: white;
+    color: #023047;
+    border-width:2px;
+    border-color: #219ebc;
+}
+
+
 </style>

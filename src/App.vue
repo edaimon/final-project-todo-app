@@ -1,13 +1,13 @@
 <template class="m-0 p-0 scroll-smooth">
   <header id="header">
-    <div class="flex flex-wrap justify-between m-auto">
-      <div class="item h-auto px-20 py-10 align-middle">
-      <RouterLink to="/"><img src="./assets/logo-taskie-web.png" alt="logo" width="180"/></RouterLink>
-    </div>
-      <div class="item h-auto px-20 py-10 align-middle">
+    <div class="flex flex-wrap justify-between m-auto navh">
+      <div class="item px-20 pt-5 pb-10 align-middle">
+        <RouterLink to="/"><img src="./assets/logo-taskie-web.png" alt="logo" width="180"/></RouterLink>
+      </div>
+      <div class="item h-auto px-20 pt-5 pb-10 align-middle">
         <!-- <RouterLink " to="/Dashboard"><button @click="signOut" >Signout</button></RouterLink> -->
         <button v-if="!!userStore.user" @click="signOut"><img src="./assets/logout-icon.svg" alt="user" width="36"/>Signout</button>
-       </div>
+      </div>
           
     </div>
 
@@ -56,5 +56,10 @@ export default {
 
 #header {
   background-color: #8ecae6;
+}
+
+.navh{
+  height: 10vh;
+  z-index: 2;
 }
 </style>
