@@ -105,7 +105,7 @@ methods:{
         this.item.status = 1
       }
       console.log("checkstatus= " + this.checkStatus)
-      await this.tasksStore.checkTasks(this.item.id, this.item.status);
+      await this.tasksStore.moveTask(this.item.id, this.item.status);
       await this.tasksStore.fetchTasks();
     }
 

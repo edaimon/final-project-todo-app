@@ -33,27 +33,27 @@ export default defineStore("tasks", {
         if (error) throw error;
     },
     async updateTasks(id, title, description){
-    const { error } = await supabase
+      const { error } = await supabase
+          .from('tasks')
+          .update({ title:title, description: description})
+          .eq('id', id)
+          if (error) throw error;
+          
+        },
+
+    async deleteTasks(id){
+      const { error } = await supabase
         .from('tasks')
-        .update({ title:title, description: description})
+        .delete("*")
         .eq('id', id)
         if (error) throw error;
-        
-      },
-
-      async deleteTasks(id){
-        const { error } = await supabase
-          .from('tasks')
-          .delete("*")
-          .eq('id', id)
-          if (error) throw error;
-      },
-      async checkTasks(id, status){
-        const { error } = await supabase
-          .from('tasks')
-          .update({status:status})
-          .eq('id', id)
-          if (error) throw error;
-      }
+    },
+    async moveTask(id, status){
+      const { error } = await supabase
+        .from('tasks')
+        .update({status:status})
+        .eq('id', id)
+        if (error) throw error;
+    }
   },
 });
