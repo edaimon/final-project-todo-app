@@ -18,16 +18,15 @@ export default defineStore("user", {
     },
 
     async signUp(email, password) {
+
       const response = await supabase.auth.signUp({
         email: email,
         password: password,
       });
-
-      const data = response.data;
       const error = response.error;
 
       if (error) throw error;
-      if (data) this.user = data.user;
+      return 1;
     },
 
     async signIn(email, password) {
