@@ -38,7 +38,7 @@
         />
         <img
           src="../img/confirm_icon.png"
-          @click="insert(), switchValueToDo()"
+          @click="insert(1), switchValueToDo()"
           alt="edit icon"
           width="20"
         />
@@ -84,7 +84,7 @@
         />
         <img
           src="../img/confirm_icon.png"
-          @click="insert(), switchValueDoing()"
+          @click="insert(2), switchValueDoing()"
           alt="edit icon"
           width="20"
         />
@@ -130,7 +130,7 @@
         />
         <img
           src="../img/confirm_icon.png"
-          @click="insert(), switchValueDone()"
+          @click="insert(3), switchValueDone()"
           alt="edit icon"
           width="20"
         />
@@ -150,6 +150,7 @@ export default {
     return {
       title: null,
       description: null,
+      status: null,
       valueToDo: false,
       valueDoing: false,
       valueDone: false,
@@ -165,11 +166,12 @@ export default {
   },
   methods: {
     /* INSERTAR TAREAS */
-    async insert() {
+    async insert(status) {
       await this.tasksStore.insertTasks(
         this.userStore.user.id,
         this.title,
-        this.description
+        this.description,
+        status
       );
       await this.tasksStore.fetchTasks();
     },
