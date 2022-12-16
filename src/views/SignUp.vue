@@ -24,7 +24,7 @@
          
             <div v-if="switchForm === true" class="sizeContainer flex flex-col items-end bg-white min-w-fit">  <!--PONER QUE SI LA VARIABLE SE CONVIERTE EN TRU SE MUESTRA ESTA -->
                 <div class="sizeContainerForm flex flex-col justify-center">
-                    <h2 class="m-5 text-center text-5xl font-bold textColor"> SIGN UP</h2>
+                    <h2 class="m-5 text-center text-5xl font-bold textColor"> CREATE AN ACCOUNT</h2>
                     <form action="sumbit" @submit.prevent="register()"  class="flex flex-col justify-evenly h-1/3">
                             <input type="text" v-model="email" placeholder="Enter your mail" class=" border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 ml-28 mr-28 h-14">
                             <input type="password" v-model="password" name="password" placeholder="Enter your password" class=" border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 ml-28 mr-28 h-14">
