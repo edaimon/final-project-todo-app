@@ -37,13 +37,14 @@
           class="font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2"
           
         />
-        <input
+        <textarea
+        @input="resize($event)"
           type="text"
           v-model="description"
           name="task"
           id="task"
           placeholder="description"
-          class="pt-5 px-2"
+          class="mt-5 px-2"
         />
       </div>
     </div>
@@ -90,13 +91,14 @@
           class="font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2"
           
         />
-        <input
+        <textarea
+        @input="resize($event)"
           type="text"
           v-model="description"
           name="task"
           id="task"
           placeholder="description"
-          class="pt-5 px-2"
+          class="mt-5 px-2"
         />
       </div>
     </div>
@@ -147,13 +149,14 @@
           class="font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2"
           
         />
-        <input
+        <textarea
+        @input="resize($event)"
           type="text"
           v-model="description"
           name="task"
           id="task"
           placeholder="description"
-          class="pt-5 px-2"
+          class="mt-5 px-2"
         />
 
       </div>
@@ -227,7 +230,11 @@ export default {
       let item = this.tasksStore.tasks.find((item) => item.id == itemId);
       item.status = state;
       this.tasksStore.moveTask(itemId, state);
-    }
+    },
+    resize(event){
+            event.target.style.height = 'auto'
+            event.target.style.height = `${event.target.scrollHeight}px`
+        }
   },
   mounted() {
     this.tasksStore.fetchTasks();
