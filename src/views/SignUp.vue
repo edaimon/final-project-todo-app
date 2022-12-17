@@ -3,12 +3,18 @@
 
     <div class=" sizeContainer bg-blue-400 flex justify-center items-center box-border color-dark-blue">
         <!-- SIGN IN FORM -->
-            <div v-if="switchForm === false" class="sizeContainer flex flex-col justify-around bg-white  min-w-fit"> <!-- PONER AQUI EL FALSE SE MOSTRARA EL FORM DEL SIGNIN -->
-                <div class="sizeContainerForm flex flex-col justify-center">
+            <div v-if="switchForm === false" class="sizeContainer flex flex-col justify-around  bg-white  min-w-fit"> <!-- PONER AQUI EL FALSE SE MOSTRARA EL FORM DEL SIGNIN -->
+                <div class="sizeContainerForm flex flex-col justify-center items-center">
                     <h2 class="m-5 text-center text-5xl font-bold textColor">WELCOME TO TASKIE!</h2>
-                    <form action="submit" @submit.prevent="login()" class="flex flex-col justify-evenly items-center h-1/3">
-                        <input type="text" v-model="email" placeholder="Enter your email" class="w-1/2 border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14">
-                        <input type="password" v-model="password" name="password" placeholder="Enter your password" class="w-1/2 border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14">
+                    <form action="submit" @submit.prevent="login()" class="flex flex-col justify-evenly h-1/3 my-10 w-1/4">
+                        <div class="inputBox ">
+                            <input type="text" v-model="email"  class=" inputMail w-full border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14">
+                            <p>Enter your email</p>
+                        </div>
+                        <div class="inputBoxPass">
+                            <input type="password" v-model="password" name="password" class="inputPass w-full border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14">
+                            <p>Enter your password</p>
+                        </div>
                         <div class="flex justify-center pt-5">
                             <button class="loginBtt rounded-lg w-64 h-16 text-center text-white font-bold shadow-xl">LOGIN!</button>
                         </div>     
@@ -23,12 +29,17 @@
          <!-- SIGN UP FORM -->
          
             <div v-if="switchForm === true" class="sizeContainer flex flex-col items-end bg-white min-w-fit">  <!--PONER QUE SI LA VARIABLE SE CONVIERTE EN TRU SE MUESTRA ESTA -->
-                <div class="sizeContainerForm flex flex-col justify-center">
+                <div class="sizeContainerForm flex flex-col justify-center items-center">
                     <h2 class="m-5 text-center text-5xl font-bold textColor"> CREATE AN ACCOUNT</h2>
-                    <form action="sumbit" @submit.prevent="register()"  class="flex flex-col justify-evenly items-center h-1/3">
-                            <input type="text" v-model="email" placeholder="Enter your mail" class=" w-1/2 border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14">
-                            <input type="password" v-model="password" name="password" placeholder="Enter your password" class="w-1/2 border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14">
-                        
+                    <form action="sumbit" @submit.prevent="register()"  class="flex flex-col justify-evenly h-1/3 my-10 w-1/4">
+                        <div class="inputBox ">
+                            <input type="text" v-model="email"  class=" inputMail w-full border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14">
+                            <p>Enter your email</p>
+                        </div>
+                        <div class="inputBoxPass">
+                            <input type="password" v-model="password" name="password" class="inputPass w-full border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14">
+                            <p>Enter your password</p>
+                        </div>
                         <div class="flex justify-center pt-5">
                             <button class="loginBtt rounded-lg w-64 h-16 text-center text-white font-bold shadow-xl">REGISTER!</button>
                         </div>
@@ -140,5 +151,56 @@ export default {
     border-color: #219ebc;
 }
 
+.inputBox{
+    position:relative;
+}
+
+.inputBoxPass{
+    position:relative;
+}
+
+.inputBox input{
+    outline: none;
+}
+
+.inputBoxPass input{
+    outline: none;
+}
+
+.inputBox p{
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translateY(-50%);
+    color:#023047;
+    font-size: 1.2rem;
+    pointer-events: none;
+    transition: .3s;
+}
+
+.inputBoxPass p{
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translateY(-50%);
+    color:#023047;
+    font-size: 19px;
+    pointer-events: none;
+    transition: .3s;
+}
+
+.inputMail:focus ~ p{
+    top: 0;
+    left: 30%;
+    padding: 0 2px;
+    background-color: white;
+}
+
+.inputPass:focus ~ p{
+    top: 0;
+    left: 25%;
+    padding: 0 2px;
+    background-color: white;
+}
 
 </style>
