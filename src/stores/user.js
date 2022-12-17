@@ -30,6 +30,7 @@ export default defineStore("user", {
     },
 
     async signIn(email, password) {
+      try{
       const { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: password,
@@ -38,6 +39,12 @@ export default defineStore("user", {
       if (data.user) {
         this.user = data.user;
         return 0;
+        }
+      } catch(error){
+        errorMsg.value = 'Error: ${error.message}';
+        setTimeout(() => {
+            error.Msg.value = null;
+        },5000);
       }
     },
 

@@ -41,7 +41,7 @@
             </div>  
             
             <div class=" imgPosition shadow-2xl" :class="{'imgPositionSwitch': switchImage}">
-                <img src="../img/presentation_1.jpg" alt="img_presentation" class=" imgSize">
+                <img src="../img/presentation_7.jpg" alt="img_presentation" class=" imgSize">
             </div> 
 
        
