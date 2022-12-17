@@ -122,7 +122,7 @@ export default {
 
 .imgSize{
     height: 90vh;
-    object-fit: cover;
+    object-fit:cover;
 }
 /*
 .itemSize{
