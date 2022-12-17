@@ -5,7 +5,7 @@
         <!-- SIGN IN FORM -->
             <div v-if="switchForm === false" class="sizeContainer flex flex-col justify-around bg-white  min-w-fit"> <!-- PONER AQUI EL FALSE SE MOSTRARA EL FORM DEL SIGNIN -->
                 <div class="sizeContainerForm flex flex-col justify-center">
-                    <h2 class="m-5 text-center text-5xl font-bold textColor">SIGN IN</h2>
+                    <h2 class="m-5 text-center text-5xl font-bold textColor">WELCOME TO TASKIE!</h2>
                     <form action="submit" @submit.prevent="login()" class="flex flex-col justify-evenly items-center h-1/3">
                         <input type="text" v-model="email" placeholder="Enter your email" class="w-1/2 border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14">
                         <input type="password" v-model="password" name="password" placeholder="Enter your password" class="w-1/2 border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14">
