@@ -41,7 +41,7 @@
             </div>  
             
             <div class=" imgPosition shadow-2xl" :class="{'imgPositionSwitch': switchImage}">
-                <img src="../img/presentation_7.jpg" alt="img_presentation" class=" imgSize">
+                <img src="../img/presentation.jpg" alt="img_presentation" class=" imgSize">
             </div> 
 
        
@@ -100,7 +100,7 @@ export default {
 .imgPosition{
     position:absolute;
     right: 0;
-    transition: transform 0.7s;  
+    transition: transform 0.6s;  
     z-index: 2;
     width: 50vw;
 }
