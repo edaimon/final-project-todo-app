@@ -23,11 +23,13 @@ export default defineStore ("columns",{
             this.columns = columns;
         },
 
-        async insertColumns (user, id, title, order){
+        async insertColumns (user, title, order){
         const {error} = await supabase
         .from("columns")
-        .insert({user_id:user, title:title, id:id, order: order})
+        .insert({user_id:user, title:title, order: order})
         if (error) throw error;    
+
+
         }
 
     }

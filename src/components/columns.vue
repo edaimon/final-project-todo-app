@@ -13,6 +13,7 @@
 
            </div>
           
+           
 
     </div>
 
@@ -92,15 +93,6 @@ export default {
   },
   methods: {
     /* INSERTAR TAREAS */
-    async insertColumns(status) {
-      await this.ColumnsStore.insertColumns(
-        this.ColumnsStore.user.id,
-        this.titleColumn,
-        status
-      );
-      await this.ColumnsStore.fetchColumns();
-      
-    },
 
     async insert(status) {
       await this.tasksStore.insertTasks(
