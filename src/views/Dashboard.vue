@@ -1,20 +1,17 @@
 <template>
-  <div class="flex flex-col mb-6 ">
-    <div class=" flex justify-between p-5 font-sans font-bold text-5xl color-dark-blue ml-16 my-8">
+  <div class="flex flex-col  ">
+    <div class=" boxSize boxShadow flex justify-between p-5 font-sans font-bold text-5xl color-dark-blue mx-16">
       
-      <h2> Dashboard </h2>
+      <h2 class=" text-center"> Dashboard </h2>
         <div class=" flex flex-col">
-        <div  class=" flex flex-col justify-start items-center  bg-cyan-500 rounded-full mr-16 mt-5 p-3 shadow-md shadow-gray-400 w-44">
-          
-          <img src="../img/icono_suma.png" @click="insertColumn(4)" alt="icono add column" width ="25" class=" ml-5" >
-
-
+        <div @click="insertColumn(4)"  class=" flex justify-evenly items-center bg-cyan-500 rounded-full p-3 shadow-md shadow-gray-400 w-44">
+          <p class=" text-xs">New column</p>
+          <img src="../img/icono_suma.png" alt="icono add column" width ="25" >
         </div>
-        <input type="Text" v-model="titleColumn"  placeholder="Introduce your title">
       </div>
     </div>
    
-    <div class="flex lg:flex-row flex-col justify-around gap-x-3 overflow-x-auto pl-96">
+    <div class="colHeight flex lg:flex-row flex-col justify-around items-start gap-x-3 overflow-x-auto pl-96 mx-16">
      
       <Columns />
     
@@ -56,6 +53,8 @@ export default {
         this.titleColumn,
         order
       );
+
+
       await this.columnsStore.fetchColumns();
     },
 
@@ -68,4 +67,17 @@ export default {
   padding: 0;
   margin: 0;
 }
+.colHeight{
+  height: 80vh;
+}
+
+.boxShadow{
+
+  box-shadow: 0 5px 5px -5px #333;
+}
+
+.boxSize{
+  height: 10vh;
+}
+
 </style>

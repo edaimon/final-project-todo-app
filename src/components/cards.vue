@@ -1,6 +1,6 @@
 <template>
 
-      <div v-if="value === false" class="flex flex-col bg-white rounded-lg p-2 my-2 cardsHeight" >
+      <div v-if="value === false" class="flex flex-col bg-white rounded-lg p-2cardsHeight" >
         <div class="font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2">{{ item.title }}</div>
         <div class="mt-5 px-2">{{ item.description }}</div>
         <div>{{ item.status }}</div>

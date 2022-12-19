@@ -11,6 +11,7 @@ export default defineStore ("columns",{
 
     getters:{
 
+
     },
 
     actions:{
