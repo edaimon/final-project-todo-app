@@ -1,18 +1,21 @@
 <template>
   <!--  INSERTAR TAREAS -->
   <div class="my-2">
-    <div
-      v-if="valueColumn === false"
-      class="bg-orange w-max rounded-full mx-auto p-3 shadow shadow-black"
-    >
-      <img
-        src="../img/icono_suma.png"
-        @click="switchValueColumn()"
-        alt="icono suma"
-        width="20"
-      />
-    </div>
+    <div class="flex justify-center">
+          <button
+            v-if="valueColumn === false"
+            class="bg-orange w-max rounded-full mx-auto p-3 shadow shadow-black"
+          >
+            <img
+              src="../img/icono_suma.png"
+              @click="switchValueColumn()"
+              alt="icono suma"
+              width="20"
+            />
+          </button>
+      </div>
     <div v-if="valueColumn === true" class="flex justify-around">
+      <button>
       <img
         src="../img/confirm_icon.png"
         @click="insert(column.id), switchValueToDo()"
@@ -20,6 +23,8 @@
         width="40"
         class="bg-white border-2 border-green-500 rounded-full p-1"
       />
+      </button>
+      <button>
       <img
         src="../img/cancel.png"
         @click="switchValueColumn()"
@@ -27,6 +32,7 @@
         width="40"
         class="bg-white border-2 border-red-500 rounded-full p-1"
       />
+      </button>
     </div>
 
     <div

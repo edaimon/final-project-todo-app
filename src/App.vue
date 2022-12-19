@@ -15,9 +15,9 @@
     
 
   </header>
- 
-  <RouterView  />
-
+  <body>
+   <RouterView  />
+  </body>
 </template>
 
 
@@ -54,7 +54,9 @@ export default {
   padding: 0;
   margin: 0;
 }
-
+body{
+  background-color:rgb(231 229 228);
+}
 #header {
   background-color: #8ecae6;
 }

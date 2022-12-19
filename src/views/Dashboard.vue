@@ -4,10 +4,10 @@
       
       <h2 class=" text-center"> Dashboard </h2>
         <div class=" flex flex-col">
-        <div @click="insertColumn(4)"  class=" flex justify-evenly items-center bg-cyan-500 rounded-full p-3 shadow-md shadow-gray-400 w-44">
+        <button @click="insertColumn(4)"  class=" flex justify-evenly items-center bg-cyan-500 rounded-full p-3 shadow-md shadow-gray-400 w-44">
           <p class=" text-xs">New column</p>
           <img src="../img/icono_suma.png" alt="icono add column" width ="25" >
-        </div>
+        </button>
       </div>
     </div>
    
@@ -67,6 +67,8 @@ export default {
   padding: 0;
   margin: 0;
 }
+
+
 .colHeight{
   height: 80vh;
 }
