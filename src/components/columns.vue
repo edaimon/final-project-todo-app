@@ -1,5 +1,5 @@
 <template>
-  
+<div class="flex">
   <div v-for= " column in columnsStore.columns" :key="column.id" class="flex flex-col shrink-0 bg-gradient-to-r from-cyan-500 to-blue-500 lg:w-1/4 rounded-3xl py-4 shadow-lg shadow-blue-500 w-3/4 mx-50px my-6 " @drop="onDrop($event, 1)" @dragover.prevent @dragenter.prevent>
    
      <div v-for="item in tasksStore.tasks" :key="item.id" draggable="true" @dragstart="startDrag($event, item)" class="flex flex-col">
@@ -62,6 +62,12 @@
     <!-- FINALIZA INSERTAR TAREAS -->
   </div>
 
+  <div @click="" class=" flex justify-start items-center  bg-cyan-500 rounded-lg bg-opacity-10 my-10 ml-10 p-3 shadow-xl shadow-black">
+
+  <img src="../img/icono_suma.png" alt="icono add column" width ="25" class="" >
+
+  </div>
+</div>
 </template>
 
 <script>
@@ -78,6 +84,7 @@ export default {
       description: null,
       status: null,
       valueColumn: false,
+      titleColumn: null,
     };
   },
 
@@ -92,12 +99,13 @@ export default {
   methods: {
     /* INSERTAR TAREAS */
     async insertColumns(status) {
-      await this.tasksColumns.insertColumns(
-        this.userStore.user.id,
+      await this.ColumnsStore.insertColumns(
+        this.ColumnsStore.user.id,
         this.titleColumn,
         status
       );
-      await this.tasksStore.fetchTasks();
+      await this.ColumnsStore.fetchColumns();
+      
     },
 
     async insert(status) {
