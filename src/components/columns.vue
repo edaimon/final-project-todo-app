@@ -1,22 +1,33 @@
 <template>
-  <div class="flex flex-col bg-gradient-to-r from-cyan-500 to-blue-500 lg:w-1/4 rounded-3xl py-4 shadow-lg shadow-blue-500 w-3/4 mx-auto my-6" @drop="onDrop($event, 1)" @dragover.prevent @dragenter.prevent>
-    <h2 class="p-10 text-xl font-bold text-white text-center">TO DO</h2>
-    <div v-for="item in tasksStore.tasks" :key="item.id" draggable="true" @dragstart="startDrag($event, item)" class="flex flex-col">
-      <div v-if="item.status === 1" class="mx-3 my-1 p-2 bg-white rounded-xl">
-        <cards :item="item"/>
-      </div>
+  
+  <div v-for= " column in columnsStore.columns" :key="column.id" class="flex flex-col shrink-0 bg-gradient-to-r from-cyan-500 to-blue-500 lg:w-1/4 rounded-3xl py-4 shadow-lg shadow-blue-500 w-3/4 mx-50px my-6 " @drop="onDrop($event, 1)" @dragover.prevent @dragenter.prevent>
+   
+     <div v-for="item in tasksStore.tasks" :key="item.id" draggable="true" @dragstart="startDrag($event, item)" class="flex flex-col">
+        
+        
+          <div v-if="item.status === 1" class="mx-3 my-1 p-2 bg-white rounded-xl">
+          
+          
+            <cards :item="item"/>
+
+
+           </div>
+          
+
     </div>
+
+  <!--  INSERTAR TAREAS -->
     <div class="pt-10">
-      <!--  INSERTAR TAREAS -->
-      <div v-if="valueToDo === false" class="bg-orange w-max rounded-full mx-auto p-3">
+
+      <div v-if="valueColumn === false" class="bg-orange w-max rounded-full mx-auto p-3 shadow shadow-black">
         <img
         src="../img/icono_suma.png"
-        @click="switchValueToDo()"
+        @click="switchValueColumn()"
         alt="icono suma"
         width="20"
       />
       </div>
-      <div v-if="valueToDo === true" class="flex justify-around">
+      <div v-if="valueColumn === true" class="flex justify-around">
           <img
             src="../img/confirm_icon.png"
             @click="insert(1), switchValueToDo()"
@@ -24,10 +35,10 @@
             width="40"
             class="bg-white border-2 border-green-500 rounded-full p-1"
           />
-          <img src="../img/cancel.png" @click="switchValueToDo()" alt="cancel icon" width="40" class="bg-white border-2 border-red-500 rounded-full p-1">
+          <img src="../img/cancel.png" @click="switchValueColumn()" alt="cancel icon" width="40" class="bg-white border-2 border-red-500 rounded-full p-1">
       </div>
 
-      <div v-if="valueToDo === true" class="flex flex-col p-2 m-4 gap-2 bg-white rounded-xl">
+      <div v-if="valueColumn === true" class="flex flex-col p-2 m-4 gap-2 bg-white rounded-xl">
         <input
           type="text"
           v-model="title"
@@ -48,126 +59,16 @@
         />
       </div>
     </div>
+    <!-- FINALIZA INSERTAR TAREAS -->
   </div>
 
-  <div class="flex flex-col bg-blue-500 lg:w-1/4 rounded-3xl py-4 shadow-lg shadow-blue-500 w-3/4 mx-auto my-6" @drop="onDrop($event, 2)" @dragover.prevent @dragenter.prevent>
-    <h2 class="p-10 text-xl font-bold text-white text-center">DOING</h2>
-    <div v-for="item in tasksStore.tasks" :key="item.id" draggable="true" @dragstart="startDrag($event, item)" class="flex flex-col">
-      <div v-if="item.status === 2" class="mx-3 my-1 p-2 bg-white rounded-xl">
-
-
-        <cards :item="item"/>
-
-
-      </div>
-    </div>
-    <div class="pt-10">
-      <!-- INSERTAR TAREAS  -->
-      <div v-if="valueDoing === false" class="bg-orange w-max rounded-full mx-auto p-3">
-        <img
-        src="../img/icono_suma.png"
-        @click="switchValueDoing()"
-        alt="icono suma"
-        width="20"
-      />
-      </div>
-      <div v-if="valueDoing === true" class="flex justify-around">
-          <img
-            src="../img/confirm_icon.png"
-            @click="insert(2), switchValueDoing()"
-            alt="edit icon"
-            width="40"
-            class="bg-white border-2 border-green-500 rounded-full p-1"
-          />
-          <img src="../img/cancel.png" @click="switchValueDoing()" alt="cancel icon" width="40" class="bg-white border-2 border-red-500 rounded-full p-1">
-      </div>
-      <div v-if="valueDoing === true" class="flex flex-col p-2 m-4 gap-2 bg-white rounded-xl">
-        <input
-          type="text"
-          v-model="title"
-          name="task"
-          id="task"
-          placeholder="title"
-          class="font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2"
-          
-        />
-        <textarea
-        @input="resize($event)"
-          type="text"
-          v-model="description"
-          name="task"
-          id="task"
-          placeholder="description"
-          class="mt-5 px-2"
-        />
-      </div>
-    </div>
-  </div>
-
-  
-  <div class="flex flex-col bg-gradient-to-r from-blue-500 to-cyan-500 lg:w-1/4 rounded-3xl py-4 shadow-lg shadow-blue-500 w-3/4 mx-auto my-6" @drop="onDrop($event, 3)" @dragover.prevent @dragenter.prevent>
-    <h2 class="p-10 text-xl font-bold text-white text-center">DONE</h2>
-    <div v-for="item in tasksStore.tasks" :key="item.id" draggable="true" @dragstart="startDrag($event, item)" class="flex flex-col">
-      <div v-if="item.status === 3" class="mx-3 my-1 p-2 bg-white rounded-xl">
-
-
-        <cards :item="item"/>
-
-
-        </div>
-      </div>
-    
-    <div class="pt-10">
-      <!-- INSERTAR TAREAS   -->
-      <div v-if="valueDone === false" class="bg-orange w-max rounded-full mx-auto p-3">
-        <img
-        src="../img/icono_suma.png"
-        @click="switchValueDone()"
-        alt="icono suma"
-        width="20"
-      />
-      </div>
-      <div v-if="valueDone === true" class="flex justify-around">
-          <img
-            src="../img/confirm_icon.png"
-            @click="insert(3), switchValueDone()"
-            alt="edit icon"
-            width="40"
-            class="bg-white border-2 border-green-500 rounded-full p-1"
-          />
-          <img src="../img/cancel.png" @click="switchValueDone()" alt="cancel icon" width="40" class="bg-white border-2 border-red-500 rounded-full p-1">
-      </div>
-
-      <div v-if="valueDone === true" class="flex flex-col p-2 m-4 gap-2 bg-white rounded-xl">
-
-        <input
-          type="text"
-          v-model="title"
-          name="task"
-          id="task"
-          placeholder="title"
-          class="font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2"
-          
-        />
-        <textarea
-        @input="resize($event)"
-          type="text"
-          v-model="description"
-          name="task"
-          id="task"
-          placeholder="description"
-          class="mt-5 px-2"
-        />
-
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
 import { mapStores } from "pinia";
 import tasksStore from "../stores/tasks";
 import userStore from "../stores/user";
+import columnsStore from "../stores/columns";
 import cards from "./cards.vue";
 
 export default {
@@ -176,9 +77,7 @@ export default {
       title: null,
       description: null,
       status: null,
-      valueToDo: false,
-      valueDoing: false,
-      valueDone: false,
+      valueColumn: false,
     };
   },
 
@@ -188,9 +87,19 @@ export default {
   computed: {
     ...mapStores(tasksStore),
     ...mapStores(userStore),
+    ...mapStores(columnsStore),
   },
   methods: {
     /* INSERTAR TAREAS */
+    async insertColumns(status) {
+      await this.tasksColumns.insertColumns(
+        this.userStore.user.id,
+        this.titleColumn,
+        status
+      );
+      await this.tasksStore.fetchTasks();
+    },
+
     async insert(status) {
       await this.tasksStore.insertTasks(
         this.userStore.user.id,
@@ -201,27 +110,14 @@ export default {
       await this.tasksStore.fetchTasks();
     },
 
-    switchValueToDo() {
-      if (this.valueToDo === true) {
-        this.valueToDo = false;
-      } else if (this.valueToDo === false) {
-        this.valueToDo = true;
+     switchValueColumn() {
+      if (this.valueColumn === true) {
+        this.valueColumn = false;
+      } else if (this.valueColumn === false) {
+        this.valueColumn = true;
       }
     },
-    switchValueDoing() {
-      if (this.valueDoing === true) {
-        this.valueDoing = false;
-      } else if (this.valueDoing === false) {
-        this.valueDoing = true;
-      }
-    },
-    switchValueDone() {
-      if (this.valueDone === true) {
-        this.valueDone = false;
-      } else if (this.valueDone === false) {
-        this.valueDone = true;
-      }
-    },
+
     startDrag(event, item){
       event.dataTransfer.setData('itemId', item.id);
     },
@@ -238,6 +134,7 @@ export default {
   },
   mounted() {
     this.tasksStore.fetchTasks();
+    this.columnsStore.fetchColumns();
   },
 };
 </script>

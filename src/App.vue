@@ -1,4 +1,5 @@
 <template class="m-0 p-0 scroll-smooth">
+
   <header id="header">
     <div class="flex flex-wrap justify-between items-center navh">
       <div class="item px-20  align-middle">
@@ -15,8 +16,8 @@
 
   </header>
  
+  <RouterView  />
 
-  <RouterView />
 </template>
 
 
