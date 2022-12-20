@@ -76,7 +76,7 @@
         <div class=" w-11/12 flex justify-evenly items-center relative">
           <input
             type="text"
-            v-model="email"
+            v-model="emailRegister"
             placeholder=" "
             class="inputFocus bg-stone-100 w-1/2 border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14"
           />
@@ -85,7 +85,7 @@
         <div class="w-11/12 flex justify-evenly items-center relative">
           <input
             type="password"
-            v-model="password"
+            v-model="passwordRegister"
             name="password"
             placeholder=" "
             class="inputFocus bg-stone-100 w-1/2 border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14"
@@ -139,6 +139,8 @@ export default {
     return {
       email: null,
       password: null,
+      emailRegister: null,
+      passwordRegister: null,
       switchImage: false,
       switchForm: false,
     };
@@ -146,7 +148,7 @@ export default {
 
   methods: {
     async register() {
-      const signUp = await this.userStore.signUp(this.email, this.password);
+      const signUp = await this.userStore.signUp(this.emailRegister, this.passwordRegister);
       alert((MessageEvent = "Confirm your email, please."));
       if (signUp === 1) {
         this.switchImage = false;
