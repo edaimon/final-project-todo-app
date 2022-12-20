@@ -5,9 +5,11 @@
       <div class="item px-20  align-middle">
         <RouterLink to="/"><img src="./assets/logo-taskie-web.png" alt="logo" width="180"/></RouterLink>
       </div>
-      <div class="item h-auto px-20 align-middle">
+      <div v-if="!!userStore.user" class="flex items-center item h-auto px-20 align-middle">
         <!-- <RouterLink " to="/Dashboard"><button @click="signOut" >Signout</button></RouterLink> -->
-        <button v-if="!!userStore.user" @click="signOut"><img src="./assets/logout-icon.svg" alt="user" width="36"/>Signout</button>
+        <p class="pr-10">Welcome, {{ userStore.user.email }}</p>
+        <button  @click="signOut"><img src="./assets/logout-icon.svg" alt="user" width="36"/>Signout</button>
+        
       </div>
           
     </div>
