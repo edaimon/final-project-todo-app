@@ -1,6 +1,6 @@
 <template>
   <div
-    class="sizeContainer bg-blue-400 flex justify-center items-center box-border color-dark-blue"
+    class="sizeContainer flex justify-center items-center box-border color-dark-blue"
   >
     <!-- SIGN IN FORM -->
     <div
@@ -12,25 +12,31 @@
         <h2 class="m-5 text-center text-5xl font-bold textColor">
           WELCOME TO TASKIE!
         </h2>
-        <p v-if="userStore.signIn() == error"> Error: {{ userStore.signIn }}</p>
+        <p v-if="userStore.signIn(error) == error"> Error: {{ userStore.signIn }}</p>
         <form
           action="submit"
           @submit.prevent="login()"
           class="flex flex-col justify-evenly items-center h-1/3"
         >
+        <div class=" w-11/12 flex justify-evenly items-center relative">
           <input
             type="text"
             v-model="email"
-            placeholder="Enter your email"
+            placeholder=" "
             class="inputFocus bg-stone-100 w-1/2 border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14"
           />
+          <p class="phtransform">Enter your email</p>
+        </div>
+        <div class="w-11/12 flex justify-evenly items-center relative">
           <input
             type="password"
             v-model="password"
             name="password"
-            placeholder="Enter your password"
+            placeholder=" "
             class="inputFocus bg-stone-100 w-1/2 border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14"
           />
+          <p class="phtransform">Enter your password</p>
+          </div>
           <div class="flex justify-center pt-5">
             <button
               class="loginBtt rounded-lg w-64 h-16 text-center text-white font-bold shadow-xl"
@@ -67,19 +73,25 @@
           @submit.prevent="register()"
           class="flex flex-col justify-evenly items-center h-1/3"
         >
+        <div class=" w-11/12 flex justify-evenly items-center relative">
           <input
             type="text"
             v-model="email"
-            placeholder="Enter your email"
+            placeholder=" "
             class="inputFocus bg-stone-100 w-1/2 border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14"
           />
+          <p class="phtransform">Enter your email</p>
+        </div>
+        <div class="w-11/12 flex justify-evenly items-center relative">
           <input
             type="password"
             v-model="password"
             name="password"
-            placeholder="Enter your password"
+            placeholder=" "
             class="inputFocus bg-stone-100 w-1/2 border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14"
           />
+          <p class="phtransform">Enter your password</p>
+          </div>
 
           <div class="flex justify-center pt-5">
             <button
@@ -207,7 +219,33 @@ export default {
   border: 3px solid #fb8500;
 }
 
+input:not(:placeholder-show) + .inputFocus:focus{
+    border: 3px solid #8ecae6;
+}
+
 .textHover:hover {
   color: #fb8500;
 }
+
+.phtransform{
+    position:absolute;
+    top:10;
+    pointer-events: none;
+    transition: .3s;
+}
+
+input:focus ~ p{
+    transform: translateY(-28px);
+    background-color: rgb(245 245 244);
+    padding: 0 5px 0 5px;
+    color: #fb8500;
+}
+
+input:not(:placeholder-shown) + .phtransform{
+    transform: translateY(-28px);
+    background-color: rgb(245 245 244);
+    padding: 0 5px 0 5px;
+    color: #8ecae6;
+}
+
 </style>
