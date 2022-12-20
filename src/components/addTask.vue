@@ -18,7 +18,7 @@
       <button>
       <img
         src="../img/confirm_icon.png"
-        @click="insert(column.id), switchValueToDo()"
+        @click="insert(column.id), switchValueColumn()"
         alt="edit icon"
         width="40"
         class="bg-white border-2 border-green-500 rounded-full p-1"
@@ -104,6 +104,9 @@ export default {
       } else if (this.valueColumn === false) {
         this.valueColumn = true;
       }
+
+      this.title = "";
+      this.description = "";
     },
 
     resize(event) {

@@ -7,6 +7,8 @@
     @dragover.prevent
     @dragenter.prevent
   >
+     <editTitleCol :column="column" />
+
     <div
       v-for="item in tasksStore.getTasksByStatus(column.id)"
       :key="item.id"
@@ -32,19 +34,19 @@ import tasksStore from "../stores/tasks";
 import userStore from "../stores/user";
 import columnsStore from "../stores/columns";
 import cards from "./cards.vue";
-import addTask from "./addTask.vue"
+import addTask from "./addTask.vue";
+import editTitleCol from"./editTitleCol.vue";
 
 export default {
   data() {
     return {
-    
       status: null,
       titleColumn: null,
     };
   },
 
   components: {
-    cards, addTask
+    cards, addTask, editTitleCol,
   },
   computed: {
     ...mapStores(tasksStore),

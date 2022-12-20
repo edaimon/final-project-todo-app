@@ -11,7 +11,7 @@
       </div>
     </div>
    
-    <div class="colHeight flex lg:flex-row flex-col justify-around items-start gap-x-3 overflow-x-auto pl-96 mx-16">
+    <div class="colHeight flex lg:flex-row flex-col items-start gap-x-3 overflow-x-auto mx-16">
      
       <Columns />
     
@@ -36,7 +36,6 @@ export default {
 
   data(){
     return{
-      titleColumn: null,
     }
   },
   computed: {
@@ -50,7 +49,6 @@ export default {
     async insertColumn(order) {
       await this.columnsStore.insertColumns(
         this.userStore.user.id,
-        this.titleColumn,
         order
       );
 
