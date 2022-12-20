@@ -125,12 +125,13 @@ export default {
 }
 
 .addBtt:hover {
+  background-color: white;
   border-color: #fb8500;
 }
 
 .inputFocus:focus {
   outline: none !important;
-  border: 3px solid #fb8500;
+  border: 2px solid #fb8500;
   border-radius: 10px;
 }
 
