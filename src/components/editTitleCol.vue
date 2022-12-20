@@ -6,11 +6,8 @@
   >
     {{ column.title }}
   </h2>
-  <form action="submit" @submit.prevent="switchTitle = !switchTitle">
+  <form action="submit" @submit.prevent="columnsStore.updateTitleCol(column.title, column.id); switchTitle = !switchTitle">
     <input
-      @dblclick="
-        columnsStore.updateTitleCol(column.title, column.id);
-      "
       v-model="column.title"
       type="text"
       v-if="switchTitle === true"
