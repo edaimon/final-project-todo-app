@@ -21,7 +21,7 @@
     <button>
       <img
         @click="deleteColumn(column.id)"
-        src="../img/delete.png"
+        src="../img/delete.svg"
         alt="delete icon"
         width="20"
       />
