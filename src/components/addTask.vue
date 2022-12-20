@@ -4,7 +4,7 @@
     <div class="flex justify-center">
           <button
             v-if="valueColumn === false"
-            class="bg-orange w-max rounded-full mx-auto p-3 shadow shadow-black"
+            class="addBtt bg-orange w-max rounded-full mx-auto p-3 shadow shadow-black"
           >
             <img
               src="../img/icono_suma.png"
@@ -17,20 +17,20 @@
     <div v-if="valueColumn === true" class="flex justify-around">
       <button>
       <img
-        src="../img/confirm_icon.png"
+        src="../img/confirm_icon.svg"
         @click="insert(column.id), switchValueColumn()"
         alt="edit icon"
         width="40"
-        class="bg-white border-2 border-green-500 rounded-full p-1"
+        class="bg-white border-2 border-black hover:border-green-500 rounded-full p-1"
       />
       </button>
       <button>
       <img
-        src="../img/cancel.png"
+        src="../img/cancel.svg"
         @click="switchValueColumn()"
         alt="cancel icon"
         width="40"
-        class="bg-white border-2 border-red-500 rounded-full p-1"
+        class="bg-white border-2 border-black hover:border-red-500 rounded-full p-1"
       />
       </button>
     </div>
@@ -45,7 +45,7 @@
         name="task"
         id="task"
         placeholder="title"
-        class="font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2"
+        class="inputFocus font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2 "
       />
       <textarea
         @input="resize($event)"
@@ -54,7 +54,7 @@
         name="task"
         id="task"
         placeholder="description"
-        class="mt-5 px-2"
+        class="inputFocus mt-5 px-2"
       />
     </div>
   </div>
@@ -117,4 +117,21 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+.addBtt{
+  border-width: 3px;
+  border-color: #fb8500;
+}
+
+.addBtt:hover {
+  border-color: #fb8500;
+}
+
+.inputFocus:focus {
+  outline: none !important;
+  border: 3px solid #fb8500;
+  border-radius: 10px;
+}
+
+</style>

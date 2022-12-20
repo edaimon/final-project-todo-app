@@ -40,7 +40,7 @@
           </div>
         </form>
         <div class="flex justify-center pt-5">
-          <p>you dont have an account?</p>
+          <p>Don't have an account?</p>
           <button
             @click="(switchImage = !switchImage), (switchForm = !switchForm)"
             class="textHover font-bold pl-5"
@@ -70,7 +70,7 @@
           <input
             type="text"
             v-model="email"
-            placeholder="Enter your mail"
+            placeholder="Enter your email"
             class="inputFocus bg-stone-100 w-1/2 border-2 border-blue-200 rounded-lg text-center pt-1 pb-1 placeholder-gray-900 h-14"
           />
           <input
@@ -204,10 +204,10 @@ export default {
 
 .inputFocus:focus {
   outline: none !important;
-  border-color: #fb8500;
+  border: 3px solid #fb8500;
 }
 
-textHover:focus {
+.textHover:hover {
   color: #fb8500;
 }
 </style>

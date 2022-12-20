@@ -11,22 +11,24 @@
     <div class="mt-5 px-2">{{ item.description }}</div>
     <div>{{ item.status }}</div>
 
-    <div id="icons" class="flex justify-end gap-5 min-w-fit">
+    <div id="icons" class=" flex justify-end gap-5 min-w-fit">
       <button>
         <img
-          src="../img/delete.png"
+          src="../img/delete.svg"
           @click="deleteTask(item.id)"
           alt="delete icon"
-          width="25"
+          width="15"
+          class="hover:scale-125"
         />
       </button>
       <button>
         <!-- MODIFICAR TASK -->
         <img
-          src="../img/edit.png"
+          src="../img/edit.svg"
           @click="switchValue(id)"
           alt="edit icon"
-          width="20"
+          width="15"
+          class="hover:scale-125"
         />
       </button>
     </div>
@@ -42,7 +44,7 @@
       name="item.id"
       id="item.id"
       placeholder="Introduce your new title"
-      class="font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2"
+      class="inputFocus font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2"
     />
     <textarea
       @input="resize($event)"
@@ -51,17 +53,18 @@
       name="item.id"
       id="item.id"
       placeholder="Introduce your new description"
-      class="textarea mt-3 px-2"
+      class=" inputFocus textarea mt-3 px-2"
     />
     <div class="flex justify-end min-w-fit">
       <button>
         <img
-          src="../img/confirm_icon.png"
+          src="../img/confirm_icon.svg"
           @click="
             editTask(item.id, item.title, item.description), switchValue()
           "
           alt="edit icon"
           width="20"
+          class="hover:scale-125 mt-2"
         />
       </button>
     </div>
@@ -130,4 +133,10 @@ export default {
   min-height: 50px;
   box-sizing: border-box;
 }
+
+.inputFocus:focus {
+  outline: none !important;
+  border-color: #fb8500;
+}
+
 </style>
