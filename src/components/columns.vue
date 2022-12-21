@@ -7,13 +7,16 @@
     @dragover.prevent
     @dragenter.prevent
   >
-     <editTitleCol :column="column" />
+    <editTitleCol :column="column" />
 
     <div
       v-for="item in tasksStore.getTasksByStatus(column.id)"
       :key="item.id"
       draggable="true"
       @dragstart="startDrag($event, item)"
+      @drop="dropCards($event, item.order)"
+      @dragover.prevent
+      @dragenter.prevent
       class="flex flex-col"
     >
       <div
@@ -35,7 +38,7 @@ import userStore from "../stores/user";
 import columnsStore from "../stores/columns";
 import cards from "./cards.vue";
 import addTask from "./addTask.vue";
-import editTitleCol from"./editTitleCol.vue";
+import editTitleCol from "./editTitleCol.vue";
 
 export default {
   data() {
@@ -63,6 +66,21 @@ export default {
       item.status = state;
       this.tasksStore.moveTask(itemId, state);
     },
+    dropCards(event, order){
+      // debugger
+      const itemId = event.dataTransfer.getData("itemId");
+      let item = this.tasksStore.tasks.find((item) => item.id == itemId);
+      let actualTasks = this.tasksStore.getTasksByStatus(item.status);
+
+      if(item.order < order){
+        actualTasks.forEach((task)=> task.order--)
+      } else if(item.order > order){
+        actualTasks.forEach((task)=> task.order++)
+      }
+      item.order = order;
+      this.tasksStore.orderTask(item.id, order)
+      this.tasksStore.fetchTasks()
+    }
 
   },
   mounted() {

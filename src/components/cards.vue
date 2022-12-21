@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="value === false"
-    class="flex flex-col bg-white rounded-lg p-2cardsHeight"
+    class="flex flex-col bg-white rounded-lg p-2 cardsHeight"
   >
     <div
       class="font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2"
@@ -10,6 +10,7 @@
     </div>
     <div class="mt-5 px-2">{{ item.description }}</div>
     <div>{{ item.status }}</div>
+    <div>{{ item.order }}</div>
 
     <div id="icons" class=" flex justify-end gap-5 min-w-fit">
       <button>

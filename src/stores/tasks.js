@@ -22,7 +22,11 @@ export default defineStore("tasks", {
       return function (taskStatus) {
         return state.tasks.filter((task) => task.status === taskStatus);
       };
-  },
+    },
+    getTasksByOrder(state){
+        let orderTasks = state.tasks.map((task)=> task.order);
+        return Math.max(...orderTasks)
+    }
   
   },
 
@@ -31,15 +35,15 @@ export default defineStore("tasks", {
       const { data: tasks } = await supabase
         .from("tasks")
         .select("*")
-        .order("id", { ascending: false });
+        .order("order", { ascending: true });
 
       this.tasks = tasks;
     },
 
-    async insertTasks(user, title, description, status){
+    async insertTasks(user, title, description, status, order){
     const { error } = await supabase
         .from('tasks')
-        .insert({user_id: user, title: title, description: description, status: status})
+        .insert({user_id: user, title: title, description: description, status: status, order:order})
         if (error) throw error;
     },
 
@@ -59,10 +63,17 @@ export default defineStore("tasks", {
         if (error) throw error;
     },
 
-    async moveTask(id, status){
+    async moveTask(id, status, order){
       const { error } = await supabase
         .from('tasks')
-        .update({status:status})
+        .update({status:status, order:order})
+        .eq('id', id)
+        if (error) throw error;
+    },
+    async orderTask(id, order){
+      const { error } = await supabase
+        .from('tasks')
+        .update({ order:order})
         .eq('id', id)
         if (error) throw error;
     }
