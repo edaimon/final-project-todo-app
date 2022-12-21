@@ -67,15 +67,31 @@ export default {
       this.tasksStore.moveTask(itemId, state);
     },
     dropCards(event, order){
-      // debugger
+      debugger
       const itemId = event.dataTransfer.getData("itemId");
       let item = this.tasksStore.tasks.find((item) => item.id == itemId);
       let actualTasks = this.tasksStore.getTasksByStatus(item.status);
 
-      if(item.order < order){
-        actualTasks.forEach((task)=> task.order--)
-      } else if(item.order > order){
-        actualTasks.forEach((task)=> task.order++)
+      let tasksBelow = actualTasks.filter((task)=> task.order <= order);
+      let tasksAbove = actualTasks.filter((task)=> task.order >= order);
+      
+      actualTasks.forEach((task)=> 
+        {
+          if(task.id != item.id){
+            
+            this.tasksStore.orderTask(task.id, task.order);
+          }
+        }
+      )
+
+      // Se tienen que modificar las tareas que queden entre el origen y el 
+      // destino, las demás no hace falta
+      // Además en la línea 75 y 76 tenemos que excluir al elemento drag
+
+      if (task.order <= order){
+        tasksBelow
+      } else if (task.order > order){
+        tasksAbove
       }
       item.order = order;
       this.tasksStore.orderTask(item.id, order)
