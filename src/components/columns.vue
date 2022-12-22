@@ -14,7 +14,7 @@
       :key="item.id"
       draggable="true"
       @dragstart="startDrag($event, item)"
-      @drop="dropCards($event, item.order)"
+      @drop="dropCards($event, item.order, column.id)"
       @dragover.prevent
       @dragenter.prevent
       class="flex flex-col"
@@ -66,36 +66,42 @@ export default {
       item.status = state;
       this.tasksStore.moveTask(itemId, state);
     },
-    dropCards(event, order){
-      debugger
+    async dropCards(event, order, column){
       const itemId = event.dataTransfer.getData("itemId");
       let item = this.tasksStore.tasks.find((item) => item.id == itemId);
-      let actualTasks = this.tasksStore.getTasksByStatus(item.status);
+      if(column === item.status){
+        let actualTasks = this.tasksStore.getTasksByStatus(item.status);
 
-      let tasksBelow = actualTasks.filter((task)=> task.order <= order);
-      let tasksAbove = actualTasks.filter((task)=> task.order >= order);
-      
-      actualTasks.forEach((task)=> 
-        {
-          if(task.id != item.id){
-            
-            this.tasksStore.orderTask(task.id, task.order);
-          }
-        }
-      )
+        let tasksBelow = actualTasks.filter((task)=> task.order > item.order && task.order <= order);
+        let tasksAbove = actualTasks.filter((task)=> task.order < item.order && task.order >= order);
+        
+        if(order > item.order){
+          tasksBelow.forEach(async task => {
+              task.order--;
+              await this.tasksStore.orderTask(task.id, task.order)
+          });
+        } else if(order < item.order){
+          tasksAbove.forEach(async task => {
+              task.order++;
+              await this.tasksStore.orderTask(task.id, task.order)
+          });
+        } 
+    } else if (column != item.status){
+      let actualTasks = this.tasksStore.getTasksByStatus(column);
+      let tasks = actualTasks.filter((task)=> task.order >= order);
+      tasks.forEach(async task => {
+        task.order++;
+        await this.tasksStore.orderTask(task.id, task.order)
+      })
+    }
+      // Task.order = order tareas restantes
+      // order = destino
+      // item.order = origen
 
-      // Se tienen que modificar las tareas que queden entre el origen y el 
-      // destino, las demás no hace falta
-      // Además en la línea 75 y 76 tenemos que excluir al elemento drag
-
-      if (task.order <= order){
-        tasksBelow
-      } else if (task.order > order){
-        tasksAbove
-      }
       item.order = order;
-      this.tasksStore.orderTask(item.id, order)
-      this.tasksStore.fetchTasks()
+      await this.tasksStore.orderTask(item.id, order)
+      await this.tasksStore.fetchTasks()
+      
     }
 
   },

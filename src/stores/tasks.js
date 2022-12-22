@@ -76,6 +76,7 @@ export default defineStore("tasks", {
         .update({ order:order})
         .eq('id', id)
         if (error) throw error;
+        console.log("llamando a orderTask, " + order)
     }
   },
 });
