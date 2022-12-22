@@ -4,7 +4,7 @@
       
       <h2 class=" text-center"> Dashboard </h2>
         <div class=" flex flex-col">
-        <button @click="insertColumn(4)"  class="addColBtt flex justify-evenly items-center bg-cyan-500 rounded-full p-3 shadow-md shadow-gray-400 w-44">
+        <button @click="insertColumn()"  class="addColBtt flex justify-evenly items-center bg-cyan-500 rounded-full p-3 shadow-md shadow-gray-400 w-44">
           <p class=" text-xs">New column</p>
           <img src="../img/icono_suma.png" alt="icono add column" width ="25" >
         </button>
@@ -46,7 +46,12 @@ export default {
 
   methods:{
 
-    async insertColumn(order) {
+    async insertColumn() {
+      let order = 0;
+      if(this.columnsStore.columns.length > 0){
+        order = this.columnsStore.getColumnsByOrder+1;
+        console.log(order);
+      }
       await this.columnsStore.insertColumns(
         this.userStore.user.id,
         order
