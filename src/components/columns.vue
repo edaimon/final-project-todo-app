@@ -1,9 +1,8 @@
-o
 <template>
   <div
     v-for="column in columnsStore.columns"
     :key="column.id"
-    class="flex flex-col shrink-0 bg-gradient-to-r from-cyan-500 to-blue-500 lg:w-1/4 rounded-3xl shadow-lg shadow-blue-500 w-3/4 mt-10"
+    class="flex flex-col shrink-0 bg-gradient-to-r from-cyan-500 to-blue-500 lg:w-1/4 rounded-3xl shadow-lg shadow-blue-500 w-3/4 mt-10 max-w-md"
     draggable="true"
     @dragstart="startDragCol($event, column)"
     @drop="onDropAux($event, column.order, column.id)"
@@ -64,10 +63,8 @@ export default {
   methods: {
     onDropAux(event, order, state) {
       if (event.dataTransfer.getData("itemId")) {
-
         this.onDrop(event, state);
       } else {
-
         this.onDropCol(event, order);
       }
     },
@@ -89,16 +86,13 @@ export default {
       const colId = event.dataTransfer.getData("colId");
       let col = this.columnsStore.columns.find((column) => column.id == colId);
 
-
-
       let columnsBelow = this.columnsStore.columns.filter(
         (column) => column.order > col.order && column.order <= order
       );
-   
+
       let columnsAbove = this.columnsStore.columns.filter(
         (column) => column.order < col.order && column.order >= order
       );
-
 
       if (order > col.order) {
         columnsBelow.forEach(async (column) => {
@@ -114,14 +108,6 @@ export default {
 
       col.order = order;
       this.columnsStore.moveColumns(colId, order);
-
-      // Task.order = order tareas restantes
-      // order = destino
-      // item.order = origen
-
-      // column.order = order tareas restantes
-      // order = destino
-      // col.order = origen
     },
     async dropCards(event, order, column) {
       const itemId = event.dataTransfer.getData("itemId");

@@ -6,8 +6,14 @@
   >
     {{ column.title }}
   </h2>
-  
-  <form action="submit" @submit.prevent="columnsStore.updateTitleCol(column.title, column.id); switchTitle = !switchTitle">
+
+  <form
+    action="submit"
+    @submit.prevent="
+      columnsStore.updateTitleCol(column.title, column.id);
+      switchTitle = !switchTitle;
+    "
+  >
     <input
       v-model="column.title"
       type="text"
@@ -15,7 +21,7 @@
       class="p-5 text-3xl font-bold text-center bg-transparent rounded-3xl outline-none w-full"
     />
   </form>
-  <div v-if="switchTitle === true" class="flex justify-center">
+  <div v-if="switchTitle === true" class="flex justify-center pb-5">
     <button>
       <img
         @click="deleteColumn(column.id)"

@@ -1,12 +1,5 @@
-// /store/task.js
-// NOTA: NOMBRE DEL ARCHIVO EN PLURAL (EN EL ASSIGNMENT LO PONE EN SINGULAR)
-
-
-
 import { defineStore } from "pinia";
 import { supabase } from "../supabase";
-
-
 
 export default defineStore("tasks", {
   state() {
@@ -17,17 +10,16 @@ export default defineStore("tasks", {
     };
   },
 
-  getters:{
+  getters: {
     getTasksByStatus(state) {
       return function (taskStatus) {
         return state.tasks.filter((task) => task.status === taskStatus);
       };
     },
-    getTasksByOrder(state){
-        let orderTasks = state.tasks.map((task)=> task.order);
-        return Math.max(...orderTasks)
-    }
-  
+    getTasksByOrder(state) {
+      let orderTasks = state.tasks.map((task) => task.order);
+      return Math.max(...orderTasks);
+    },
   },
 
   actions: {
@@ -40,43 +32,45 @@ export default defineStore("tasks", {
       this.tasks = tasks;
     },
 
-    async insertTasks(user, title, description, status, order){
-    const { error } = await supabase
-        .from('tasks')
-        .insert({user_id: user, title: title, description: description, status: status, order:order})
-        if (error) throw error;
+    async insertTasks(user, title, description, status, order) {
+      const { error } = await supabase
+        .from("tasks")
+        .insert({
+          user_id: user,
+          title: title,
+          description: description,
+          status: status,
+          order: order,
+        });
+      if (error) throw error;
     },
 
-    async updateTasks(id, title, description){
+    async updateTasks(id, title, description) {
       const { error } = await supabase
-          .from('tasks')
-          .update({ title:title, description: description})
-          .eq('id', id)
-          if (error) throw error;   
-        },
-
-    async deleteTasks(id){
-      const { error } = await supabase
-        .from('tasks')
-        .delete("*")
-        .eq('id', id)
-        if (error) throw error;
+        .from("tasks")
+        .update({ title: title, description: description })
+        .eq("id", id);
+      if (error) throw error;
     },
 
-    async moveTask(id, status, order){
-      const { error } = await supabase
-        .from('tasks')
-        .update({status:status, order:order})
-        .eq('id', id)
-        if (error) throw error;
+    async deleteTasks(id) {
+      const { error } = await supabase.from("tasks").delete("*").eq("id", id);
+      if (error) throw error;
     },
-    async orderTask(id, order){
-      const { error } = await supabase
-        .from('tasks')
-        .update({ order:order})
-        .eq('id', id)
-        if (error) throw error;
 
-    }
+    async moveTask(id, status, order) {
+      const { error } = await supabase
+        .from("tasks")
+        .update({ status: status, order: order })
+        .eq("id", id);
+      if (error) throw error;
+    },
+    async orderTask(id, order) {
+      const { error } = await supabase
+        .from("tasks")
+        .update({ order: order })
+        .eq("id", id);
+      if (error) throw error;
+    },
   },
 });

@@ -9,12 +9,10 @@ export default defineStore("columns", {
   },
 
   getters: {
-    getColumnsByOrder(state){
-      let orderColumns = state.columns.map((column)=> column.order);
-      return Math.max(...orderColumns)
-  }
-
-
+    getColumnsByOrder(state) {
+      let orderColumns = state.columns.map((column) => column.order);
+      return Math.max(...orderColumns);
+    },
   },
 
   actions: {
@@ -23,7 +21,7 @@ export default defineStore("columns", {
         .from("columns")
         .select("*")
         .order("order", { ascending: true });
-      
+
       this.columns = columns;
     },
 
@@ -43,29 +41,26 @@ export default defineStore("columns", {
       if (error) throw error;
     },
 
-    async moveColumns(id, order){
+    async moveColumns(id, order) {
       const { error } = await supabase
-        .from('columns')
-        .update({order:order})
-        .eq('id', id)
-        if (error) throw error;
-        this.fetchColumns();
+        .from("columns")
+        .update({ order: order })
+        .eq("id", id);
+      if (error) throw error;
+      this.fetchColumns();
     },
 
     async deleteColumns(id) {
-      const { error } = await supabase
-      .from("columns")
-      .delete("*")
-      .eq("id", id);
+      const { error } = await supabase.from("columns").delete("*").eq("id", id);
       if (error) throw error;
     },
 
-    async orderColumn(id, order){
+    async orderColumn(id, order) {
       const { error } = await supabase
-        .from('columns')
-        .update({ order:order})
-        .eq('id', id)
-        if (error) throw error;
-    }
+        .from("columns")
+        .update({ order: order })
+        .eq("id", id);
+      if (error) throw error;
+    },
   },
 });

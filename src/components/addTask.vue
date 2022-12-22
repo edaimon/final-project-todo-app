@@ -1,37 +1,36 @@
 <template>
-  <!--  INSERTAR TAREAS -->
   <div class="my-2">
     <div class="flex justify-center">
-          <button
-            v-if="valueColumn === false"
-            class="addBtt bg-orange w-max rounded-full mx-auto p-3 shadow shadow-black"
-          >
-            <img
-              src="../img/icono_suma.png"
-              @click="switchValueColumn()"
-              alt="icono suma"
-              width="20"
-            />
-          </button>
-      </div>
+      <button
+        v-if="valueColumn === false"
+        class="addBtt bg-orange w-max rounded-full mx-auto p-3 shadow shadow-black"
+      >
+        <img
+          src="../img/icono_suma.png"
+          @click="switchValueColumn()"
+          alt="icono suma"
+          width="20"
+        />
+      </button>
+    </div>
     <div v-if="valueColumn === true" class="flex justify-around">
       <button>
-      <img
-        src="../img/confirm_icon.svg"
-        @click="insert(column.id), switchValueColumn()"
-        alt="edit icon"
-        width="40"
-        class="bg-white border-2 border-black hover:border-green-500 rounded-full p-1"
-      />
+        <img
+          src="../img/confirm_icon.svg"
+          @click="insert(column.id), switchValueColumn()"
+          alt="edit icon"
+          width="40"
+          class="bg-white border-2 border-black hover:border-green-500 rounded-full p-1"
+        />
       </button>
       <button>
-      <img
-        src="../img/cancel.svg"
-        @click="switchValueColumn()"
-        alt="cancel icon"
-        width="40"
-        class="bg-white border-2 border-black hover:border-red-500 rounded-full p-1"
-      />
+        <img
+          src="../img/cancel.svg"
+          @click="switchValueColumn()"
+          alt="cancel icon"
+          width="40"
+          class="bg-white border-2 border-black hover:border-red-500 rounded-full p-1"
+        />
       </button>
     </div>
 
@@ -45,7 +44,7 @@
         name="task"
         id="task"
         placeholder="title"
-        class="inputFocus font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2 "
+        class="inputFocus font-bold color-dark-blue uppercase border-b-2 borderColor pb-3 px-2"
       />
       <textarea
         @input="resize($event)"
@@ -58,7 +57,6 @@
       />
     </div>
   </div>
-  <!-- FINALIZA INSERTAR TAREAS -->
 </template>
 
 <script>
@@ -68,10 +66,7 @@ import userStore from "../stores/user";
 import columnsStore from "../stores/columns";
 
 export default {
-
-  props:[
-    "column"
-  ],
+  props: ["column"],
 
   data() {
     return {
@@ -81,21 +76,17 @@ export default {
     };
   },
 
-  computed:{
+  computed: {
     ...mapStores(tasksStore),
     ...mapStores(userStore),
     ...mapStores(columnsStore),
   },
 
   methods: {
-    // addOrder(){
-    //   return this.order++
-    // },
     async insert(status) {
       let order = 0;
-      if(this.tasksStore.tasks.length > 0){
-        order = this.tasksStore.getTasksByOrder+1;
-   
+      if (this.tasksStore.tasks.length > 0) {
+        order = this.tasksStore.getTasksByOrder + 1;
       }
       await this.tasksStore.insertTasks(
         this.userStore.user.id,
@@ -127,8 +118,7 @@ export default {
 </script>
 
 <style>
-
-.addBtt{
+.addBtt {
   border-width: 3px;
   border-color: #fb8500;
 }
@@ -143,5 +133,4 @@ export default {
   border: 2px solid #fb8500;
   border-radius: 10px;
 }
-
 </style>
