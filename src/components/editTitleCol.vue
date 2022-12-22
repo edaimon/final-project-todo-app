@@ -6,6 +6,7 @@
   >
     {{ column.title }}
   </h2>
+  
   <form action="submit" @submit.prevent="columnsStore.updateTitleCol(column.title, column.id); switchTitle = !switchTitle">
     <input
       v-model="column.title"

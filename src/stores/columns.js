@@ -8,15 +8,22 @@ export default defineStore("columns", {
     };
   },
 
-  getters: {},
+  getters: {
+    getColumnsByOrder(state){
+      let orderColumns = state.columns.map((column)=> column.order);
+      return Math.max(...orderColumns)
+  }
+
+
+  },
 
   actions: {
     async fetchColumns() {
       const { data: columns } = await supabase
         .from("columns")
         .select("*")
-        .order("id", { ascending: true });
-
+        .order("order", { ascending: true });
+      
       this.columns = columns;
     },
 
@@ -36,6 +43,15 @@ export default defineStore("columns", {
       if (error) throw error;
     },
 
+    async moveColumns(id, order){
+      const { error } = await supabase
+        .from('columns')
+        .update({order:order})
+        .eq('id', id)
+        if (error) throw error;
+        this.fetchColumns();
+    },
+
     async deleteColumns(id) {
       const { error } = await supabase
       .from("columns")
@@ -43,5 +59,13 @@ export default defineStore("columns", {
       .eq("id", id);
       if (error) throw error;
     },
+
+    async orderColumn(id, order){
+      const { error } = await supabase
+        .from('columns')
+        .update({ order:order})
+        .eq('id', id)
+        if (error) throw error;
+    }
   },
 });
