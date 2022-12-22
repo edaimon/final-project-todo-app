@@ -7,11 +7,9 @@ import { supabase } from "../supabase";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-  { path:"/", name:"signup", component: SignUp},
-  { path: "/Dashboard", name:"dashboard", component: Dashboard },
-
-],
-
+    { path: "/", name: "signup", component: SignUp },
+    { path: "/Dashboard", name: "dashboard", component: Dashboard },
+  ],
 });
 
 router.beforeEach(async (to) => {
@@ -23,10 +21,7 @@ router.beforeEach(async (to) => {
   }
   if (!isLoggedIn && to.name !== "signup") {
     return "/";
-  } 
+  }
+});
 
-
-})
-
- 
 export default router;

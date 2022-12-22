@@ -10,7 +10,7 @@
     </div>
     <div class="mt-5 px-2">{{ item.description }}</div>
 
-    <div id="icons" class=" flex justify-end gap-5 min-w-fit">
+    <div id="icons" class="flex justify-end gap-5 min-w-fit">
       <button>
         <img
           src="../img/delete.svg"
@@ -52,7 +52,7 @@
       name="item.id"
       id="item.id"
       placeholder="Introduce your new description"
-      class=" inputFocus textarea mt-3 px-2"
+      class="inputFocus textarea mt-3 px-2"
     />
     <div class="flex justify-end min-w-fit">
       <button>
@@ -68,8 +68,6 @@
       </button>
     </div>
   </div>
-
-  <!-- END MODIFICAR TASK -->
 </template>
 
 <script>
@@ -137,5 +135,4 @@ export default {
   outline: none !important;
   border-color: #fb8500;
 }
-
 </style>
