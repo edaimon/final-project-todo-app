@@ -7,13 +7,16 @@
     @dragover.prevent
     @dragenter.prevent
   >
-     <editTitleCol :column="column" />
+    <editTitleCol :column="column" />
 
     <div
       v-for="item in tasksStore.getTasksByStatus(column.id)"
       :key="item.id"
       draggable="true"
       @dragstart="startDrag($event, item)"
+      @drop="dropCards($event, item.order, column.id)"
+      @dragover.prevent
+      @dragenter.prevent
       class="flex flex-col"
     >
       <div
@@ -35,7 +38,7 @@ import userStore from "../stores/user";
 import columnsStore from "../stores/columns";
 import cards from "./cards.vue";
 import addTask from "./addTask.vue";
-import editTitleCol from"./editTitleCol.vue";
+import editTitleCol from "./editTitleCol.vue";
 
 export default {
   data() {
@@ -63,6 +66,43 @@ export default {
       item.status = state;
       this.tasksStore.moveTask(itemId, state);
     },
+    async dropCards(event, order, column){
+      const itemId = event.dataTransfer.getData("itemId");
+      let item = this.tasksStore.tasks.find((item) => item.id == itemId);
+      if(column === item.status){
+        let actualTasks = this.tasksStore.getTasksByStatus(item.status);
+
+        let tasksBelow = actualTasks.filter((task)=> task.order > item.order && task.order <= order);
+        let tasksAbove = actualTasks.filter((task)=> task.order < item.order && task.order >= order);
+        
+        if(order > item.order){
+          tasksBelow.forEach(async task => {
+              task.order--;
+              await this.tasksStore.orderTask(task.id, task.order)
+          });
+        } else if(order < item.order){
+          tasksAbove.forEach(async task => {
+              task.order++;
+              await this.tasksStore.orderTask(task.id, task.order)
+          });
+        } 
+    } else if (column != item.status){
+      let actualTasks = this.tasksStore.getTasksByStatus(column);
+      let tasks = actualTasks.filter((task)=> task.order >= order);
+      tasks.forEach(async task => {
+        task.order++;
+        await this.tasksStore.orderTask(task.id, task.order)
+      })
+    }
+      // Task.order = order tareas restantes
+      // order = destino
+      // item.order = origen
+
+      item.order = order;
+      await this.tasksStore.orderTask(item.id, order)
+      await this.tasksStore.fetchTasks()
+      
+    }
 
   },
   mounted() {

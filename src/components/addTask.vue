@@ -88,12 +88,21 @@ export default {
   },
 
   methods: {
+    // addOrder(){
+    //   return this.order++
+    // },
     async insert(status) {
+      let order = 0;
+      if(this.tasksStore.tasks.length > 0){
+        order = this.tasksStore.getTasksByOrder+1;
+        console.log(order);
+      }
       await this.tasksStore.insertTasks(
         this.userStore.user.id,
         this.title,
         this.description,
-        status
+        status,
+        order
       );
       await this.tasksStore.fetchTasks();
     },
