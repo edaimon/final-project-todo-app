@@ -64,10 +64,10 @@ export default {
   methods: {
     onDropAux(event, order, state) {
       if (event.dataTransfer.getData("itemId")) {
-        console.log("task");
+
         this.onDrop(event, state);
       } else {
-        console.log("columns");
+
         this.onDropCol(event, order);
       }
     },
@@ -89,18 +89,16 @@ export default {
       const colId = event.dataTransfer.getData("colId");
       let col = this.columnsStore.columns.find((column) => column.id == colId);
 
-      // adsdasguldafsguldafguldfagads
 
-      console.log("col order" + col.order, " y order " + order);
 
       let columnsBelow = this.columnsStore.columns.filter(
         (column) => column.order > col.order && column.order <= order
       );
-      console.log(columnsBelow);
+   
       let columnsAbove = this.columnsStore.columns.filter(
         (column) => column.order < col.order && column.order >= order
       );
-      console.log(columnsAbove);
+
 
       if (order > col.order) {
         columnsBelow.forEach(async (column) => {
@@ -116,7 +114,7 @@ export default {
 
       col.order = order;
       this.columnsStore.moveColumns(colId, order);
-      
+
       // Task.order = order tareas restantes
       // order = destino
       // item.order = origen

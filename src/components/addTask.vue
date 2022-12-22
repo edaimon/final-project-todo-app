@@ -95,7 +95,7 @@ export default {
       let order = 0;
       if(this.tasksStore.tasks.length > 0){
         order = this.tasksStore.getTasksByOrder+1;
-        console.log(order);
+   
       }
       await this.tasksStore.insertTasks(
         this.userStore.user.id,

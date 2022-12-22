@@ -50,7 +50,7 @@ export default {
       let order = 0;
       if(this.columnsStore.columns.length > 0){
         order = this.columnsStore.getColumnsByOrder+1;
-        console.log(order);
+
       }
       await this.columnsStore.insertColumns(
         this.userStore.user.id,

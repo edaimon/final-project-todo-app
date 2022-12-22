@@ -66,7 +66,6 @@ export default defineStore("columns", {
         .update({ order:order})
         .eq('id', id)
         if (error) throw error;
-        console.log("llamando a orderColumn, " + order)
     }
   },
 });

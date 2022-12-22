@@ -9,8 +9,6 @@
       {{ item.title }}
     </div>
     <div class="mt-5 px-2">{{ item.description }}</div>
-    <div>{{ item.status }}</div>
-    <div>{{ item.order }}</div>
 
     <div id="icons" class=" flex justify-end gap-5 min-w-fit">
       <button>
